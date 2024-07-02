@@ -11,6 +11,7 @@
       ms-python.python
       ms-toolsai.jupyter
       esbenp.prettier-vscode
+      asvetliakov.vscode-neovim
     ];
     userSettings = {
       "breadcrumbs.enabled" = false;
@@ -58,6 +59,8 @@
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
       };
+      "python.pythonPath" = "~/.local/python/bin";
+      "python.defaultInterpreterPath" = "~/.local/python/bin/python";
       "git.confirmSync" = false;
       "git.enableSmartCommit" = true;
       "markdown.preview.markEditorSelection" = false;
