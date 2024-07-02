@@ -1,0 +1,180 @@
+# Options
+set drawbox
+set ratios 1:2
+set info size:time
+set hidden
+set icons
+set promptfmt "  󰉋  %w"
+set ifs "\n"
+set mouse
+set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+set period 1
+set previewer '~/.config/lf/scope'
+set shellopts '-eu'
+set cursorpreviewfmt "\033[7;2m"
+
+# Better defaults
+map . :set hidden!
+map i :set preview!
+map <c-q> :quit
+map c
+map cc clear
+map cd push :mkdir<space>
+map r :rename
+map <c-r> bulkrename
+# Goto
+map gh cd ~
+map gc cd ~/.config
+map gr cd /
+map gd cd ~/Downloads
+map gn cd ~/.config/nvim
+map gi cd ~/Imagens
+map go cd ~/Documentos
+map gp cd ~/Coding
+map gm cd ~/MEGA
+
+# Delete
+cmd copy_to_clipboard ${{
+    printf '%s' "$fx" | wl-copy
+}}
+map <c-y> :copy_to_clipboard
+
+map <c-d> trash
+cmd trash %{{
+    set -f
+    printf "Delete?[y/n]"
+    read ans
+   	[ "$ans" = "y" ] && printf '%s' "$fx" | xargs -I {} rm -rf {} || echo "ERROR: Not deleting"
+}}
+
+map D trash-jump
+cmd trash-multi ${{
+    res="$(fd . -d 1 | fzf --bind=ctrl-f:toggle,ctrl-a:toggle-all --multi --color=bg+:-1,gutter:-1 --reverse --border --header='Delete')"
+   	printf '%s' "$res" | xargs -I {} rm -rf {} || echo "ERROR: Not deleting"
+}}
+
+# Extract
+map ze extract
+cmd extract ${{
+  set -f
+  case $f in
+      *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+      *.tar.gz|*.tgz) tar xzvf $f;;
+      *.tar.xz|*.txz) tar xJvf $f;;
+      *.zip) unzip $f;;
+      *.rar) unrar x $f;;
+      *.7z) 7z x $f;;
+  esac
+}}
+
+# Zipper
+map zz zip
+cmd zip ${{
+    set -f
+   	printf '%s' "$fx" | atool --add $f.7z
+}}
+
+# Paste
+map p : paste; clear
+
+# Bulkrename
+cmd bulkrename ${{
+    tmpfile_old="$(mktemp)"
+    tmpfile_new="$(mktemp)"
+    # Determine file list
+    printf "$fs" | tr '\n' '\0' | xargs -0 -n 1 basename > "$tmpfile_old"
+		cp "$tmpfile_old" "$tmpfile_new"
+    # Open the tmpfile_new in a nested Neovim instance and wait until it's closed
+    nvim -c "au BufWritePost * qa!" "$tmpfile_new"
+    # Check if line counts match
+    [ "$(wc -l < "$tmpfile_old")" -eq "$(wc -l < "$tmpfile_new")" ] || { rm -f "$tmpfile_old" "$tmpfile_new"; exit 1; }
+    # Process the renamed files
+    paste "$tmpfile_old" "$tmpfile_new" | while IFS="$(printf '\t')" read -r src dst
+    do
+        [ "$src" = "$dst" ] || [ -e "$dst" ] || mv -- "$src" "$dst"
+    done
+    # Clean up temporary files
+    rm -f "$tmpfile_old" "$tmpfile_new"
+    # Notify lf to unselect
+    lf -remote "send $id unselect"
+}}
+
+# Finder
+cmd fzf_jump ${{
+    res="$(fd . -d 1 -H --exclude '.git' | fzf --bind=ctrl-f:accept,ctrl-h:backward-delete-char --preview "~/.config/lf/preview {}" --color=bg+:-1,gutter:-1 --reverse --border --header='Jump to location')"
+    if [ -n "$res" ]; then
+        [ -d "$res" ] && cmd="cd" || cmd="select"
+        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+map f :fzf_jump
+
+# Recursive Finder
+cmd fzf_recursive ${{
+    res="$(fd . -d 4 -H --exclude '.git' | fzf --bind=ctrl-f:accept,ctrl-h:backward-delete-char --preview "~/.config/lf/preview {}" --color=bg+:-1,gutter:-1 --reverse --border --header='Jump to location')"
+    if [ -n "$res" ]; then
+        [ -d "$res" ] && cmd="cd" || cmd="select"
+        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+map <c-f> :fzf_recursive
+
+cmd fzf_search ${{
+    RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+    res="$(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX ''" \
+            fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+            --color=bg+:-1,gutter:-1 --reverse --border \
+            --bind=ctrl-f:accept,ctrl-h:backward-delete-char \
+            --ansi --header 'Search in files' \
+            | cut -d':' -f1 | sed 's/\\/\\\\/g;s/"/\\"/g'
+    )"
+    [ -n "$res" ] && lf -remote "send $id select \"$res\""
+}}
+map s :fzf_search
+
+cmd mkdir %{{
+    IFS=" "
+    mkdir -p -- "$*"
+    lf -remote "send $id select \"$*\""
+}}
+
+#Git integration
+cmd on-cd &{{
+  # Get the latest commit info
+  if [ -d .git ] || [ -f .git ]; then
+    commit_info=$(git log -1 --pretty=format:"[%an, %ar : %s]") || true
+    fmt="\033[34;1m%d\033[0m\033[1m%f\033 \033[35;1m$commit_info\033"
+  else
+    fmt="\033[34;1m%d\033[0m\033[1m%f\033[0m"
+  fi
+  lf -remote "send $id set promptfmt \"$fmt\""
+}}
+
+cmd create-file %{{
+	printf "Create file: "
+	read file_name
+	touch $file_name
+}}
+map cf :create-file
+
+#Create go project
+cmd create-go %{{
+  printf "Project name: "
+  read project_name
+  mkdir "$project_name"
+
+  go_version=$(go version | cut -d " " -f 3 | sed "s/go/go /g")
+
+  printf "module $project_name\n\n$go_version" >> "$project_name"/go.mod
+
+  printf "package main\n\n" >> "$project_name"/main.go
+
+  printf "import (\n\t\"fmt\"\n)\n\n" >> "$project_name"/main.go
+
+  printf "func main() {\n\tfmt.Println(\"Hello World!\")\n}" >> "$project_name"/main.go
+}}
+
+map cg :create-go

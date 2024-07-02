@@ -1,0 +1,82 @@
+#!/bin/sh
+
+set -C -f -u
+IFS="$(printf '%b_' '\n')"
+IFS="${IFS%_}"
+
+# Script arguments
+FILE_PATH="${1}" # Full path of the highlighted file
+FILE_EXTENSION="${FILE_PATH##*.}"
+FILE_EXTENSION_LOWER=$(echo "${FILE_EXTENSION}" | tr '[:upper:]' '[:lower:]')
+MIMETYPE="$(file --dereference --brief --mime-type -- "${FILE_PATH}")"
+
+handle_extension() {
+	case "${FILE_EXTENSION_LOWER}" in
+	# Archive
+	a | ace | alz | arc | arj | bz | bz2 | cab | cpio | deb | gz | jar | lha | lz | lzh | lzma | lzo | \
+		rpm | rz | t7z | tar | tbz | tbz2 | tgz | tlz | txz | tZ | tzo | war | xpi | xz | Z | zip)
+		atool --list -- "${FILE_PATH}"
+		bsdtar --list --file "${FILE_PATH}"
+		exit 1
+		;;
+
+	rar)
+		unrar lt -p- -- "${FILE_PATH}"
+		exit 1
+		;;
+
+	7z)
+		7z l -p -- "${FILE_PATH}"
+		exit 1
+		;;
+
+	# PDF
+	pdf)
+		# Preview as text conversion
+		pdftotext -l 10 -nopgbrk -q -- "${FILE_PATH}" -
+		mutool draw -F txt -i -- "${FILE_PATH}" 1-10
+		exit 1
+		;;
+
+	# BitTorrent
+	torrent)
+		transmission-show -- "${FILE_PATH}"
+		exit 1
+		;;
+
+	# OpenDocument
+	odt | ods | odp | sxw)
+		# Preview as text conversion
+		odt2txt "${FILE_PATH}"
+		exit 1
+		;;
+
+  bmp | jpg | jpeg | png | xpm | webp | gif | jfif)
+    image "${FILE_PATH}"
+    ;;
+
+	# HTML
+	htm | html | xhtml)
+		# Preview as text conversion
+		w3m -dump "${FILE_PATH}"
+		lynx -dump -- "${FILE_PATH}"
+		elinks -dump "${FILE_PATH}"
+		;; # Continue with next handler on failure
+	esac
+}
+
+handle_mime() {
+	case "${MIMETYPE}" in
+	  *)
+	    bat --style "${BAT_STYLE:-plain}" --theme "base16" --pager=never -f "${FILE_PATH}" ;;
+  esac
+}
+
+handle_fallback() {
+	printf '\n\n----- File Type Classification -----' && file --dereference --brief -- "${FILE_PATH}"
+	exit 1
+}
+
+handle_extension
+handle_mime
+handle_fallback
