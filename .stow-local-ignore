@@ -7,3 +7,4 @@ flake.lock
 flake.nix
 hardware-configuration.nix
 home.nix
+programs

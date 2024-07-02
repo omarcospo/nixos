@@ -9,46 +9,13 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
   home.enableNixpkgsReleaseCheck = false;
 
-  # programs.alacritty
-  programs.zsh = {
-    enable = true;
-    dotDir = ".config/zsh";
-    enableCompletion = false;
-    shellAliases = {
-      uh = "home-manager switch --flake ~/.nixos";
-      us = "sudo nixos-rebuild switch --flake ~/.nixos";
-      ee = "eza";
-      qq = "clear";
-      eq = "exit";
-      config = "git --git-dir=$HOME/.cfg/ --work-tree=$HOME";
-      npmi = "cd ~/.local && npm install";
-    };
-    initExtraFirst = ''
-      setopt PROMPT_SUBST
-      PROMPT='%F{yellow}[%n]%f %~ '
-    '';
-    initExtra = ''
-      source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
-      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-      source ~/.config/zsh/extra
-    '';
-  };
+  imports = [
+    ./programs/vscodium.nix
+    ./programs/neovim.nix
+    ./programs/zsh.nix
+    ./programs/git.nix
+  ];
 
-  programs.git = {
-    enable = true;
-    userName = "omarcospo";
-    userEmail = "marcos.felipe@usp.br";
-    extraConfig = {
-      init.defaultBranch = "main";
-    };
-  };
-
-  programs.neovim = {
-    enable = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-  };
-
-  # ...
   gtk = {
     enable = true;
 
@@ -85,8 +52,14 @@
     };
     "org/gnome/shell" = {
       disable-user-extensions = false; # enables user extensions
-      enabled-extensions = [
-        pkgs.gnomeExtensions.forge.extensionUuid
+      disable-extension-version-validation = true;
+      enabled-extensions = with pkgs; [
+        gnomeExtensions.forge.extensionUuid
+        gnomeExtensions.just-perfection.extensionUuid
+        gnomeExtensions.appindicator.extensionUuid
+        gnomeExtensions.clipboard-indicator.extensionUuid
+        gnomeExtensions.quick-settings-audio-panel.extensionUuid
+        gnomeExtensions.alphabetical-app-grid.extensionUuid
       ];
     };
   };
@@ -97,6 +70,12 @@
     gnome.gnome-tweaks
     # GNOME Extensions
     gnomeExtensions.forge
+    gnomeExtensions.just-perfection
+    gnomeExtensions.appindicator
+    gnomeExtensions.clipboard-indicator
+    gnomeExtensions.quick-settings-audio-panel
+    gnomeExtensions.alphabetical-app-grid
+    gnomeExtensions.app-icons-taskbar
     # GENERAL LANGUAGE
     nodejs_22
     biome
@@ -128,8 +107,5 @@
     mdformat
   ];
 
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
   programs.home-manager.enable = true;
 }
