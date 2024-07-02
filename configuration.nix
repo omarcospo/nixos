@@ -98,23 +98,42 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   system.stateVersion = "24.05"; # Did you read the comment?
 
+  # Fix python problem with packages requiring libstdc++.so.6
+  # environment = {
+  #   sessionVariables = {
+  #     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib.outPath}/lib:$LD_LIBRARY_PATH";
+  #   };
+  # };
+
   # ZSH
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
+
   # System
-  environment.systemPackages = with pkgs; [
-    #CLI
-    lf
-    fzf
-    ripgrep
-    fd
-    bat
-    eza
-    zoxide
-    wl-clipboard
-    alacritty
-    stow
-  ];
+  environment.systemPackages = let
+    pythonEnv = pkgs.python3.withPackages (ps:
+      with ps; [
+        numpy
+        pandas
+        matplotlib
+        seaborn
+        plotly
+      ]);
+  in
+    with pkgs; [
+      pythonEnv
+      lf
+      fzf
+      ripgrep
+      fd
+      bat
+      eza
+      zoxide
+      wl-clipboard
+      alacritty
+      stow
+    ];
+
   # Fonts
   fonts = {
     enableDefaultPackages = true;

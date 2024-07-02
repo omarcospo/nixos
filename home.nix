@@ -98,7 +98,6 @@
     # TYPESCRIPT
     nodePackages.typescript-language-server
     # PYTHON
-    python312
     ruff
     python312Packages.jedi-language-server
     # SHELL
