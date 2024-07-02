@@ -1,0 +1,186 @@
+# Paths
+export PATH="/var/lib/flatpak/exports/share:$PATH"
+export PATH="$HOME/.local/share/flatpak/exports/share:$PATH"
+export PATH="$HOME/.nimble/bin:$PATH"
+export PATH="$HOME/.local/share/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/node_modules/.bin:$PATH"
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_CONFIG_HOME="$HOME"/.config
+export ZK_NOTEBOOK_DIR="$HOME/Notes"
+export KCAPI="$XDG_DATA_HOME/api.json"
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export GOPATH="$XDG_DATA_HOME"/go
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
+export NIMBLE_DIR="$XDG_DATA_HOME/nimble"
+export PYTHONSTARTUP="$HOME"/python/pythonrc
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+
+# FZF
+FUZZY_OPTS="--color=bg+:-1,gutter:-1 --reverse --border --bind ctrl-f:accept,ctrl-h:backward-delete-char"
+export FZF_DEFAULT_OPTS=$FUZZY_OPTS
+export SKIM_DEFAULT_OPTIONS=$FUZZY_OPTS
+export _ZO_FZF_OPTS=$FUZZY_OPTS
+
+# Custom commands
+pyenv() {source "$HOME/.local/python/bin/activate"}
+
+yt-dlp() {
+command yt-dlp \
+  --all-subs \
+  --write-annotations \
+  --add-metadata \
+  --embed-subs \
+  --embed-thumbnail \
+  --merge-output-format mkv \
+  -S "res:1920" \
+  "$@"
+}
+
+eza() {command eza -lah --color always "$@"}
+
+cd() {builtin cd "$@" && command eza -lah --color always}
+
+vv() { NVIM_APPNAME=nvim nvim "$@" }
+
+vq() {
+  local config=$(fd --max-depth 1 --glob 'nvim*' ~/.config | fzf --prompt="  Neovim Config: " --height=~50% --bind=ctrl-f:accept --color=bg+:-1,gutter:-1 --reverse --border)
+  [[ -z $config ]] && echo "No config selected" && return
+  NVIM_APPNAME=$(basename $config) nvim $@
+}
+
+###### --------------------------------------
+if [[ $- != *i* ]]; then
+    return
+fi
+# completion cache path setup
+typeset -g comppath="$HOME/.cache"
+typeset -g compfile="$comppath/.zcompdump"
+if [[ -d "$comppath" ]]; then
+    [[ -w "$compfile" ]] || rm -rf "$compfile" >/dev/null 2>&1
+else
+    mkdir -p "$comppath"
+fi
+
+# COMPLETION
+zstyle ':completion:*:correct:*' original true
+zstyle ':completion:*:correct:*' insert-unambiguous true
+zstyle ':completion:*:approximate:*' max-errors 'reply=($(( ($#PREFIX + $#SUFFIX) / 3 )) numeric)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$comppath"
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' verbose true
+zstyle ':completion:*' insert-tab false
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' menu select
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:-command-:*:' verbose false
+zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion:*:manuals.*' insert-sections true
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*' completer _complete _match _approximate _ignored
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' format ' %F{green}->%F{yellow} %d%f'
+zstyle ':completion:*:messages' format ' %F{green}->%F{purple} %d%f'
+zstyle ':completion:*:descriptions' format ' %F{green}->%F{yellow} %d%f'
+zstyle ':completion:*:warnings' format ' %F{green}->%F{red} no matches%f'
+zstyle ':completion:*:corrections' format ' %F{green}->%F{green} %d: %e%f'
+eval "$(dircolors)"
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=36=0=01'
+zstyle ':completion:*:functions' ignored-patterns '(prompt*|_*|*precmd*|*preexec*)'
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+zstyle ':completion:*:(vim|nvim|vi|nano|emacs):*' ignored-patterns '*.(wav|mp3|flac|ogg|mp4|avi|mkv|iso|so|o|7z|zip|tar|gz|bz2|rar|deb|pkg|gzip|pdf|png|jpeg|jpg|gif)'
+zstyle ':completion:*:ssh:*' tag-order 'hosts:-host:host hosts:-domain:domain hosts:-ipaddr:ip\ address *'
+zstyle ':completion:*:ssh:*' group-order users hosts-domain hosts-host users hosts-ipaddr
+zstyle ':completion:*:(scp|rsync):*' tag-order 'hosts:-host:host hosts:-domain:domain hosts:-ipaddr:ip\ address *'
+zstyle ':completion:*:(scp|rsync):*' group-order users files all-files hosts-domain hosts-host hosts-ipaddr
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' loopback ip6-loopback localhost ip6-localhost broadcasthost
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-domain' ignored-patterns '<->.<->.<->.<->' '^[-[:alnum:]]##(.[-[:alnum:]]##)##' '*@*'
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
+ttyctl -f
+
+# OPTIONS
+KEYTIMEOUT=1
+SAVEHIST=10000
+HISTSIZE=10000
+HISTFILE="$HOME/.cache/.zsh_history"
+setopt CORRECT
+setopt NO_NOMATCH
+setopt LIST_PACKED
+setopt ALWAYS_TO_END
+setopt GLOB_COMPLETE
+setopt COMPLETE_ALIASES
+setopt COMPLETE_IN_WORD
+setopt AUTO_CD
+setopt AUTO_CONTINUE
+setopt LONG_LIST_JOBS
+setopt HIST_VERIFY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt EXTENDED_GLOB
+setopt TRANSIENT_RPROMPT
+setopt INTERACTIVE_COMMENTS
+export MANWIDTH=80
+export LESS='-R'
+export LESSHISTFILE=-
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[32m'
+export LESS_TERMCAP_mb=$'\e[31m'
+export LESS_TERMCAP_md=$'\e[31m'
+export LESS_TERMCAP_so=$'\e[47;30m'
+export LESSPROMPT='?f%f .?ltLine %lt:?pt%pt\%:?btByte %bt:-...'
+
+# LOAD
+autoload -U compinit     # completion
+autoload -U terminfo     # terminfo keys
+zmodload -i zsh/complist # menu completion
+
+## --- KEYS
+autoload -U up-line-or-beginning-search; zle -N up-line-or-beginning-search
+autoload -U down-line-or-beginning-search; zle -N down-line-or-beginning-search
+exp_alias()
+{ zle _expand_alias
+  zle self-insert
+}; zle -N exp_alias
+bindkey -- ' '     exp_alias
+bindkey -- '^A'    beginning-of-line
+bindkey -- '^[^M'  self-insert-unmeta # alt-enter to insert a newline/carriage return
+bindkey -- '^[05M' accept-line # fix for enter key on some systems
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
+    zle-line-init() { echoti smkx; }; zle -N zle-line-init
+    zle-line-finish() { echoti rmkx; }; zle -N zle-line-finish
+fi
+[[ -n ${terminfo[kcud1]} ]] && bindkey -- "${terminfo[kcud1]}" down-line-or-beginning-search # down arrow
+[[ -n ${terminfo[kdch1]} ]] && bindkey -- "${terminfo[kdch1]}" delete-char                   # delete
+[[ -n ${terminfo[kend]}  ]] && bindkey -- "${terminfo[kend]}"  end-of-line                   # end
+[[ -n ${terminfo[kcuf1]} ]] && bindkey -- "${terminfo[kcuf1]}" forward-char                  # right arrow
+[[ -n ${terminfo[kcub1]} ]] && bindkey -- "${terminfo[kcub1]}" backward-char                 # left arrow
+[[ -n ${terminfo[kich1]} ]] && bindkey -- "${terminfo[kich1]}" overwrite-mode                # insert
+[[ -n ${terminfo[khome]} ]] && bindkey -- "${terminfo[khome]}" beginning-of-line             # home
+[[ -n ${terminfo[kbs]}   ]] && bindkey -- "${terminfo[kbs]}"   backward-delete-char          # backspace
+[[ -n ${terminfo[kcbt]}  ]] && bindkey -- "${terminfo[kcbt]}"  reverse-menu-complete         # shift-tab
+[[ -n ${terminfo[kcuu1]} ]] && bindkey -- "${terminfo[kcuu1]}" up-line-or-beginning-search   # up arrow
+[[ -n ${terminfo[kcud1]} ]] && bindkey -- "${terminfo[kcud1]}" down-line-or-beginning-search # down arrow
+
+# Extensions
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+eval "$(zoxide init --cmd cd zsh)"

@@ -13,10 +13,7 @@
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
-    # initExtra = "source ~/.config/zsh/zshrc";
     enableCompletion = false;
-    autosuggestion.enable = false;
-    syntaxHighlighting.enable = false;
     shellAliases = {
       uh = "home-manager switch --flake ~/.nixos";
       us = "sudo nixos-rebuild switch --flake ~/.nixos";
@@ -26,12 +23,15 @@
       config = "git --git-dir=$HOME/.cfg/ --work-tree=$HOME";
       npmi = "cd ~/.local && npm install";
     };
-    plugins = [
-      {
-        name = "fast-syntax-highlighting";
-        src = "${pkgs.zsh-fast-syntax-highlighting}";
-      }
-    ];
+    initExtraFirst = ''
+      setopt PROMPT_SUBST
+      PROMPT='%F{yellow}[%n]%f %~ '
+    '';
+    initExtra = ''
+      source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+      source ~/.config/zsh/extra
+    '';
   };
 
   programs.git = {
