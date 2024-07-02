@@ -84,31 +84,15 @@
     pulse.enable = true;
   };
 
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.marcos = {
     isNormalUser = true;
     description = "Marcos Felipe";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -129,24 +113,7 @@
     zoxide
     wl-clipboard
     alacritty
-    #
-    #GO
-    go
-    gopls
-    gofumpt
-    goimports-reviser
-    #LUA
-    lua
-    stylua
-    lua-language-server
-    #TYPST
-    typst
-    typstyle
-    #NIX
-    alejandra
-    #PYTHON
-    #MARKDOWN
-    mdformat
+    stow
   ];
   # Fonts
   fonts = {

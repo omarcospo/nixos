@@ -1,0 +1,9 @@
+.git
+.stow-local-ignore
+LiCENSE
+README.md
+configuration.nix
+flake.lock
+flake.nix
+hardware-configuration.nix
+home.nix

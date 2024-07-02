@@ -92,10 +92,40 @@
   };
 
   home.packages = with pkgs; [
-    gnomeExtensions.forge
-    gnome.gnome-tweaks
     brave
+    # GNOME
+    gnome.gnome-tweaks
+    # GNOME Extensions
+    gnomeExtensions.forge
+    # GENERAL LANGUAGE
+    nodejs_22
+    biome
+    #GO
+    go
+    gopls
+    gofumpt
+    goimports-reviser
+    wails
+    #LUA
+    lua
+    stylua
+    lua-language-server
+    #TYPST
+    typst
+    typstyle
+    typst-lsp
+    #NIX
+    alejandra
+    # TYPESCRIPT
+    nodePackages.typescript-language-server
+    # PYTHON
     python312
+    ruff
+    python312Packages.jedi-language-server
+    # SHELL
+    shellcheck
+    #MARKDOWN
+    mdformat
   ];
 
   home.sessionVariables = {
