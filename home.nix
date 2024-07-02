@@ -51,16 +51,8 @@
       secondary-color = "#000000";
     };
     "org/gnome/shell" = {
-      disable-user-extensions = false; # enables user extensions
+      disable-user-extensions = false;
       disable-extension-version-validation = true;
-      enabled-extensions = with pkgs; [
-        gnomeExtensions.forge.extensionUuid
-        gnomeExtensions.just-perfection.extensionUuid
-        gnomeExtensions.appindicator.extensionUuid
-        gnomeExtensions.clipboard-indicator.extensionUuid
-        gnomeExtensions.quick-settings-audio-panel.extensionUuid
-        gnomeExtensions.alphabetical-app-grid.extensionUuid
-      ];
     };
   };
 
@@ -75,7 +67,6 @@
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.quick-settings-audio-panel
     gnomeExtensions.alphabetical-app-grid
-    gnomeExtensions.app-icons-taskbar
     # GENERAL LANGUAGE
     nodejs_22
     biome
