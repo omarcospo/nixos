@@ -10,6 +10,7 @@
   home.enableNixpkgsReleaseCheck = false;
 
   imports = [
+    ./programs/alacritty.nix
     ./programs/vscodium.nix
     ./programs/neovim.nix
     ./programs/zsh.nix
