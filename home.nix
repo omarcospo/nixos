@@ -73,10 +73,7 @@
     wails
     lua
     typst
-<<<<<<< HEAD
-=======
     # make global to be availlable in neovim and vscodium
->>>>>>> e320e8a (link language tools to neovim)
     python312Packages.jedi-language-server
   ];
 
