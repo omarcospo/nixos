@@ -67,34 +67,13 @@
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.quick-settings-audio-panel
     gnomeExtensions.alphabetical-app-grid
-    # GENERAL LANGUAGE
+    # LANGUAGES
     nodejs_22
-    biome
-    #GO
     go
-    gopls
-    gofumpt
-    goimports-reviser
     wails
-    #LUA
     lua
-    stylua
-    lua-language-server
-    #TYPST
     typst
-    typstyle
-    typst-lsp
-    #NIX
-    alejandra
-    # TYPESCRIPT
-    nodePackages.typescript-language-server
-    # PYTHON
-    ruff
     python312Packages.jedi-language-server
-    # SHELL
-    shellcheck
-    #MARKDOWN
-    mdformat
   ];
 
   home = {
