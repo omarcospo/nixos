@@ -14,6 +14,7 @@
     ./programs/neovim.nix
     ./programs/zsh.nix
     ./programs/git.nix
+    ./programs/mpv.nix
   ];
 
   gtk = {
