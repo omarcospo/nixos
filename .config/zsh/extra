@@ -28,18 +28,6 @@ export _ZO_FZF_OPTS=$FUZZY_OPTS
 # Custom commands
 pyenv() {source "$HOME/.local/python/bin/activate"}
 
-yt-dlp() {
-command yt-dlp \
-  --all-subs \
-  --write-annotations \
-  --add-metadata \
-  --embed-subs \
-  --embed-thumbnail \
-  --merge-output-format mkv \
-  -S "res:1920" \
-  "$@"
-}
-
 eza() {command eza -lah --color always "$@"}
 
 cd() {builtin cd "$@" && command eza -lah --color always}
