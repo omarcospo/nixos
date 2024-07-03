@@ -124,7 +124,6 @@
     eza
     zoxide
     wl-clipboard
-    alacritty
     stow
   ];
 
