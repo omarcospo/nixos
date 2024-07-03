@@ -9,8 +9,8 @@
     dotDir = ".config/zsh";
     enableCompletion = false;
     shellAliases = {
-      uh = "home-manager switch --flake ~/.nixos";
-      us = "sudo nixos-rebuild switch --flake ~/.nixos";
+      uh = "home-manager switch --flake ~/.nixos --show-trace -L -v";
+      us = "sudo nixos-rebuild switch --flake ~/.nixos --show-trace -L -v";
       ee = "eza";
       qq = "clear";
       eq = "exit";
