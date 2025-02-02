@@ -193,7 +193,10 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       (nerdfonts.override {fonts = ["Iosevka"];})
-      noto-fonts
+      barlow
+      lora
+      b612
+      poppins
       noto-fonts-cjk-sans
       noto-fonts-emoji
     ];
