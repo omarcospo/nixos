@@ -86,6 +86,7 @@ in {
       move-to-workspace-right = ["<Super><Ctrl>e"];
       move-to-workspace-left = ["<Super><Ctrl>q"];
       close = ["<Super>c"];
+      toggle-fullscreen = ["<Super>f"];
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       volume-down = ["<Ctrl>F2"];
