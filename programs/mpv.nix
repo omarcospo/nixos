@@ -31,7 +31,7 @@
       ytdl-format = "bestvideo[height<=?1080]+bestaudio/best";
 
       # Subtitles
-      sub-font = "Noto Sans";
+      sub-font = "B612";
       sub-font-size = "40";
       sub-border-size = "2";
     };

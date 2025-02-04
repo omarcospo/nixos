@@ -208,13 +208,16 @@
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      (nerdfonts.override {fonts = ["Iosevka"];})
+      (nerdfonts.override {fonts = ["Iosevka" "Noto"];})
       barlow
       lora
       b612
       poppins
+      noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-monochrome-emoji
+      noto-fonts-color-emoji
+      ibm-plex
     ];
     fontconfig = {
       defaultFonts = {
