@@ -139,6 +139,7 @@ in {
     unstable.anytype
     mission-center
     qbittorrent
+    onlyoffice-desktopeditors
     (discord.override {
       withOpenASAR = true;
       withVencord = true;
