@@ -131,6 +131,8 @@ in {
     unstable.anytype
     mission-center
     qbittorrent
+    shotcut
+    kdenlive
     onlyoffice-desktopeditors
     (discord.override {
       withOpenASAR = true;
@@ -147,11 +149,12 @@ in {
     ];
   };
 
-  # fix python packages not being recognized
   home = {
     sessionVariables = {
+      # fix python packages not being recognized
       LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib.outPath}/lib:$LD_LIBRARY_PATH";
       QT_QPA_PLATFORM = "wayland";
+      NIXOS_OZONE_WL = "1";
     };
   };
   programs.home-manager.enable = true;
