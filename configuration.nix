@@ -12,33 +12,46 @@
   services.xserver.enable = true;
   services.xserver.excludePackages = [pkgs.xterm];
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  environment.gnome.excludePackages = with pkgs; [
-    gnome-connections
-    gnome-console
-    gnome-photos
-    gnome-tour
-    gnome-text-editor
-    cheese
-    gnome-music
-    epiphany
-    geary
-    gnome-characters
-    totem
-    tali
-    iagno
-    hitori
-    atomix
-    yelp
-    gnome-maps
-    gnome-weather
-    gnome-contacts
-    simple-scan
-    gnome-shell-extensions
-    gnome-system-monitor
+  # Enable the KDE Desktop Environment.
+  services.displayManager = {
+    sddm.enable = true;
+    sddm.wayland.enable = true;
+    sddm.autoNumlock = true;
+    defaultSession = "plasma";
+  };
+  services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    konsole
+    oxygen
   ];
+  # Enable the GNOME Desktop Environment.
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+  # environment.gnome.excludePackages = with pkgs; [
+  #   gnome-connections
+  #   gnome-console
+  #   gnome-photos
+  #   gnome-tour
+  #   gnome-text-editor
+  #   cheese
+  #   gnome-music
+  #   epiphany
+  #   geary
+  #   gnome-characters
+  #   totem
+  #   tali
+  #   iagno
+  #   hitori
+  #   atomix
+  #   yelp
+  #   gnome-maps
+  #   gnome-weather
+  #   gnome-contacts
+  #   simple-scan
+  #   gnome-shell-extensions
+  #   gnome-system-monitor
+  # ];
 
   services.xserver.xkb = {
     layout = "br";

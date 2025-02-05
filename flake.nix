@@ -7,12 +7,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     nixpkgs-unstable,
+    plasma-manager,
     ...
   } @ inputs: let
     overlays = [
@@ -27,6 +33,7 @@
       pkgs = nixpkgs.legacyPackages."x86_64-linux";
       extraSpecialArgs = {inherit inputs;};
       modules = [
+        inputs.plasma-manager.homeManagerModules.plasma-manager
         {
           nixpkgs.overlays = overlays;
           nixpkgs.config.packageOverrides = pkgs: {
