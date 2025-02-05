@@ -125,7 +125,6 @@ in {
     typst
     python312Packages.jedi-language-server
     # APPS
-    gparted
     unstable.neovide
     unstable.lunacy
     unstable.chromium
