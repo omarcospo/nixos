@@ -4,7 +4,12 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}: let
+  hosts = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts";
+    sha256 = "1umf7BTajDRvKeRh3NVypSa53Ia9zuHeVBkMZtC3DOk=";
+  };
+in {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
