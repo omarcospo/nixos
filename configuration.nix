@@ -2,7 +2,12 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  hosts = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts";
+    sha256 = "NCGRGJzEaHPLr+hpDfeYp1AhTwNvTSzYrKJTQlZ/Fwg=";
+  };
+in {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -35,6 +40,7 @@
   # Network
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
+  networking.extraHosts = builtins.readFile hosts;
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
