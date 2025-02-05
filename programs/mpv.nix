@@ -21,6 +21,9 @@
       # Window
       fs = "yes";
       cursor-autohide = "1000";
+      autofit = "100%";
+      geometry = "40%x40%";
+      window-maximized = "yes";
 
       # Screenshot
       screenshot-directory = "~/Pictures/";
