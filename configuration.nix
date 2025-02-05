@@ -136,17 +136,9 @@ in {
   services.tlp = {
     enable = true;
     settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_SCALING_MIN_FREQ_ON_AC = 2500000;
+      CPU_SCALING_MAX_FREQ_ON_AC = 3600000;
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 75;
-      CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 50;
-
       DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth wifi wwan";
     };
   };
