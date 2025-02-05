@@ -61,21 +61,16 @@ in {
       disable-user-extensions = false;
       disable-extension-version-validation = true;
       enabled-extensions = with pkgs.gnomeExtensions; [
-        forge.extensionUuid
         speedinator.extensionUuid
         appindicator.extensionUuid
         clipboard-indicator.extensionUuid
         quick-settings-audio-panel.extensionUuid
         alphabetical-app-grid.extensionUuid
-        rounded-window-corners-reborn.extensionUuid
-        vitals.extensionUuid
+        paperwm.extensionUuid
         gsconnect.extensionUuid
         steal-my-focus-window.extensionUuid
         color-picker.extensionUuid
       ];
-    };
-    "org/gnome/shell/extensions/vitals" = {
-      hot-sensors = "['_memory_allocated_', '_processor_frequency_', '__network-rx_max__']";
     };
     "org/gnome/desktop/input-sources" = {
       xkb-options = ["ctrl:nocaps" "ctrl:rctrl" "altwin:swap_lalt_lwin"];
@@ -114,17 +109,15 @@ in {
   };
 
   home.packages = with pkgs; [
-    gnomeExtensions.forge
     gnomeExtensions.speedinator
     gnomeExtensions.appindicator
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.quick-settings-audio-panel
     gnomeExtensions.alphabetical-app-grid
-    gnomeExtensions.rounded-window-corners-reborn
-    gnomeExtensions.vitals
     gnomeExtensions.gsconnect
     gnomeExtensions.steal-my-focus-window
     gnomeExtensions.color-picker
+    gnomeExtensions.paperwm
     gnome-extension-manager
     dconf-editor
     # LANGUAGES
