@@ -48,6 +48,7 @@
       mpris
       webtorrent-mpv-hook
       dynamic-crop
+      autoload
     ];
     bindings = {
       # Menu bindings
