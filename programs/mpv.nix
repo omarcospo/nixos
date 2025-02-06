@@ -14,6 +14,10 @@
       cache = "yes";
       demuxer-max-back-bytes = "20M";
       demuxer-max-bytes = "20M";
+      hwdec = "auto-safe";
+      vo = "gpu";
+      profile = "gpu-hq";
+      gpu-context = "wayland";
 
       # Audio
       af = "lavfi=[dynaudnorm=f=75:g=25:p=0.55]";

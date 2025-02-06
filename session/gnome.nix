@@ -5,6 +5,27 @@
   modulesPath,
   ...
 }: {
+  home.packages = with pkgs; [
+    gnomeExtensions.speedinator
+    gnomeExtensions.appindicator
+    gnomeExtensions.clipboard-indicator
+    gnomeExtensions.quick-settings-audio-panel
+    gnomeExtensions.alphabetical-app-grid
+    gnomeExtensions.gsconnect
+    gnomeExtensions.steal-my-focus-window
+    gnomeExtensions.color-picker
+    gnomeExtensions.paperwm
+    gnome-extension-manager
+    dconf-editor
+  ];
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+    style.name = "adwaita-dark";
+    style.package = pkgs.adwaita-qt;
+  };
+
   gtk = {
     enable = true;
 
@@ -51,6 +72,7 @@
         gsconnect.extensionUuid
         steal-my-focus-window.extensionUuid
         color-picker.extensionUuid
+        vitals.extensionUuid
       ];
     };
     "org/gnome/desktop/input-sources" = {
@@ -81,18 +103,4 @@
       uris = ["qemu:///system"];
     };
   };
-
-  home.packages = with pkgs; [
-    gnomeExtensions.speedinator
-    gnomeExtensions.appindicator
-    gnomeExtensions.clipboard-indicator
-    gnomeExtensions.quick-settings-audio-panel
-    gnomeExtensions.alphabetical-app-grid
-    gnomeExtensions.gsconnect
-    gnomeExtensions.steal-my-focus-window
-    gnomeExtensions.color-picker
-    gnomeExtensions.paperwm
-    gnome-extension-manager
-    dconf-editor
-  ];
 }

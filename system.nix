@@ -24,7 +24,7 @@ in {
     };
     kernelParams = [
       "quiet" # Suppresses most boot messages
-      "loglevel=3" # Limits kernel log output (0 = emergency, 7 = debug)
+      "loglevel=0" # Limits kernel log output (0 = emergency, 7 = debug)
       "splash" # Enables splash screen (if using Plymouth)
     ];
     consoleLogLevel = 0; # 0 = no console output, 7 = debug
@@ -35,7 +35,7 @@ in {
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 1d";
+    options = "--delete-older-than 5d";
   };
 
   nix.settings.auto-optimise-store = true;
@@ -45,8 +45,7 @@ in {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      libvdpau-va-gl
+      intel-vaapi-driver
     ];
   };
   environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";}; # Force intel-media-driver

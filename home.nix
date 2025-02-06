@@ -3,11 +3,7 @@
   config,
   pkgs,
   ...
-}: let
-  chromium = pkgs.ungoogled-chromium.override {
-    commandLineArgs = "--force-device-scale-factor=1.10";
-  };
-in {
+}: {
   home.username = "talib";
   home.homeDirectory = "/home/talib";
   home.stateVersion = "25.05";
@@ -21,7 +17,7 @@ in {
     ./programs/git.nix
     ./programs/mpv.nix
     ./programs/yt-dlp.nix
-    ./session/kde.nix
+    ./session/gnome.nix
   ];
 
   nixpkgs = {
@@ -39,11 +35,10 @@ in {
     # APPS
     unstable.neovide
     unstable.lunacy
-    unstable.chromium
     unstable.anytype
+    unstable.firefox-beta
     mission-center
     qbittorrent
-    shotcut
     kdenlive
     onlyoffice-desktopeditors
     (discord.override {
@@ -63,7 +58,6 @@ in {
 
   home = {
     sessionVariables = {
-      # fix python packages not being recognized
       LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib.outPath}/lib:$LD_LIBRARY_PATH";
       QT_QPA_PLATFORM = "wayland";
       NIXOS_OZONE_WL = "1";
