@@ -31,12 +31,11 @@
     # LANGUAGES
     lua
     typst
-    python312Packages.jedi-language-server
     # APPS
-    unstable.neovide
-    unstable.lunacy
-    unstable.anytype
-    unstable.firefox-beta
+    neovide
+    lunacy
+    anytype
+    firefox
     mission-center
     qbittorrent
     kdenlive
@@ -60,6 +59,7 @@
     sessionVariables = {
       QT_QPA_PLATFORM = "wayland";
       NIXOS_OZONE_WL = "1";
+      NIXPKGS_ALLOW_UNFREE = "1";
     };
   };
   programs.home-manager.enable = true;
