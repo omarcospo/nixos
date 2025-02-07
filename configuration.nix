@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -64,7 +65,7 @@
 
   # System
   environment.systemPackages = with pkgs; [
-    python312
+    python313
     lf
     fzf
     ripgrep
@@ -74,7 +75,6 @@
     zoxide
     wl-clipboard
     stow
-    gcc14
     win-virtio
   ];
 
@@ -84,11 +84,18 @@
   virtualisation.spiceUSBRedirection.enable = true;
   users.extraGroups.vboxusers.members = ["talib"];
 
+  environment = {
+    sessionVariables = {
+      LD_LIBRARY_PATH = lib.makeLibraryPath [pkgs.stdenv.cc.cc pkgs.zlib];
+    };
+  };
+
   # Fonts
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      (nerdfonts.override {fonts = ["Iosevka" "Noto"];})
+      nerd-fonts.iosevka
+      nerd-fonts.noto
       barlow
       lora
       b612

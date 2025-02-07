@@ -58,7 +58,6 @@
 
   home = {
     sessionVariables = {
-      LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib.outPath}/lib:$LD_LIBRARY_PATH";
       QT_QPA_PLATFORM = "wayland";
       NIXOS_OZONE_WL = "1";
     };

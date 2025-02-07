@@ -6,8 +6,8 @@
   ...
 }: let
   hosts = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts";
-    sha256 = "1umf7BTajDRvKeRh3NVypSa53Ia9zuHeVBkMZtC3DOk=";
+    url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-only/hosts";
+    sha256 = "zvPPF90hdh0d1D+6wb4WA9hfIupnGjFcvFs3PmEvIgY=";
   };
 in {
   boot = {
