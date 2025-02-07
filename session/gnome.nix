@@ -15,16 +15,8 @@
     gnomeExtensions.steal-my-focus-window
     gnomeExtensions.color-picker
     gnomeExtensions.paperwm
-    gnome-extension-manager
     dconf-editor
   ];
-
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style.name = "adwaita-dark";
-    style.package = pkgs.adwaita-qt;
-  };
 
   gtk = {
     enable = true;
