@@ -23,19 +23,19 @@ in {
       theme = "bgrt";
     };
     kernelParams = [
-      "quiet" # Suppresses most boot messages
-      "loglevel=0" # Limits kernel log output (0 = emergency, 7 = debug)
-      "splash" # Enables splash screen (if using Plymouth)
+      "quiet"
+      "loglevel=0"
+      "splash"
     ];
-    consoleLogLevel = 0; # 0 = no console output, 7 = debug
+    consoleLogLevel = 0;
   };
 
   # Reduce disk usage
   boot.loader.systemd-boot.configurationLimit = 5;
   nix.gc = {
     automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 5d";
+    dates = "daily";
+    options = "--delete-older-than 1d";
   };
 
   nix.settings.auto-optimise-store = true;
@@ -44,11 +44,11 @@ in {
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      intel-media-driver
       intel-vaapi-driver
     ];
   };
-  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";}; # Force intel-media-driver
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
 
   # Network
   networking.hostName = "nixos";
@@ -70,14 +70,10 @@ in {
     ];
   };
 
-  # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
   console.keyMap = "br-abnt2";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "pt_BR.UTF-8";
     LC_IDENTIFICATION = "pt_BR.UTF-8";
@@ -105,7 +101,7 @@ in {
     enable = true;
     settings = {
       CPU_SCALING_MIN_FREQ_ON_AC = 2500000;
-      CPU_SCALING_MAX_FREQ_ON_AC = 3600000;
+      CPU_SCALING_MAX_FREQ_ON_AC = 3100000;
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
     };
   };

@@ -45,7 +45,6 @@
     layout = "br";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.talib = {
     isNormalUser = true;
     description = "talib";
