@@ -94,6 +94,9 @@
     sessionVariables = {
       LD_LIBRARY_PATH = lib.makeLibraryPath [pkgs.stdenv.cc.cc pkgs.zlib];
       QT_SCALE_FACTOR = "1";
+      QT_QPA_PLATFORM = "wayland";
+      NIXOS_OZONE_WL = "1";
+      NIXPKGS_ALLOW_UNFREE = "1";
     };
   };
 
