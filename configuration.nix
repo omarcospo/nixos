@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   imports = [
@@ -40,6 +41,12 @@
     gnome-shell-extensions
     gnome-system-monitor
   ];
+
+  qt = {
+    enable = true;
+    platformTheme = "qt5ct";
+    style = "kvantum";
+  };
 
   services.xserver.xkb = {
     layout = "br";
@@ -86,6 +93,7 @@
   environment = {
     sessionVariables = {
       LD_LIBRARY_PATH = lib.makeLibraryPath [pkgs.stdenv.cc.cc pkgs.zlib];
+      QT_SCALE_FACTOR = "1";
     };
   };
 
@@ -106,6 +114,15 @@
       ibm-plex
     ];
     fontconfig = {
+      antialias = true;
+      hinting = {
+        enable = true;
+        style = "slight";
+      };
+      subpixel = {
+        rgba = "rgb";
+        lcdfilter = "default";
+      };
       defaultFonts = {
         serif = ["Noto Serif"];
         sansSerif = ["Noto Sans"];
