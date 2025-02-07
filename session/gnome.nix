@@ -25,6 +25,13 @@
     sha256 = "xBl6zmpqTAH5MIT5iNAdW6kdOcB5MY0Dtrb95hdYpwA=";
   }}/src/KvLibadwaita";
 
+  home.file.".local/share/background-image.jpg" = {
+    source = pkgs.fetchurl {
+      url = "https://images.pexels.com/photos/14840650/pexels-photo-14840650.jpeg";
+      sha256 = "1xwpww4dghkm4cii56z9xli12ns7asl0mgmfgag8hdrib16nqy1x";
+    };
+  };
+
   xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
     General.theme = "KvLibadwaitaDark";
   };
@@ -54,11 +61,11 @@
       enable-hot-corners = true;
     };
     "org/gnome/desktop/background" = {
-      picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-l.svg";
-      picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-d.svg";
+      picture-uri = "file://${config.home.homeDirectory}/.local/share/background-image.jpg";
+      picture-uri-dark = "file://${config.home.homeDirectory}/.local/share/background-image.jpg";
     };
     "org/gnome/desktop/screensaver" = {
-      picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-d.svg";
+      picture-uri = "file://${config.home.homeDirectory}/.local/share/background-image.jpg";
       primary-color = "#3465a4";
       secondary-color = "#000000";
     };
