@@ -14,7 +14,8 @@
     gnomeExtensions.gsconnect
     gnomeExtensions.steal-my-focus-window
     gnomeExtensions.color-picker
-    gnomeExtensions.paperwm
+    gnomeExtensions.rounded-window-corners-reborn
+    stable.gnome-extension-manager
     dconf-editor
   ];
 
@@ -78,11 +79,12 @@
         clipboard-indicator.extensionUuid
         quick-settings-audio-panel.extensionUuid
         alphabetical-app-grid.extensionUuid
-        paperwm.extensionUuid
+        forge.extensionUuid
         gsconnect.extensionUuid
         steal-my-focus-window.extensionUuid
         color-picker.extensionUuid
         vitals.extensionUuid
+        rounded-window-corners-reborn.extensionUuid
       ];
     };
     "org/gnome/desktop/input-sources" = {
