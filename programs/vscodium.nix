@@ -33,7 +33,7 @@
       "editor.foldingHighlight" = false;
       "editor.fontFamily" = "'IosevkaTerm Nerd Font'";
       "editor.fontLigatures" = true;
-      "editor.fontSize" = 20;
+      "editor.fontSize" = 16;
       "editor.formatOnSave" = true;
       "editor.glyphMargin" = false;
       "editor.gotoLocation.multipleDeclarations" = "goto";
