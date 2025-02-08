@@ -38,7 +38,7 @@
     firefox
     mission-center
     qbittorrent
-    kdenlive
+    stable.kdenlive
     onlyoffice-desktopeditors
     (discord.override {
       withOpenASAR = true;
