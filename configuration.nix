@@ -42,6 +42,10 @@
     gnome-system-monitor
   ];
 
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+  programs.gamemode.enable = true;
+
   qt = {
     enable = true;
     platformTheme = "qt5ct";
