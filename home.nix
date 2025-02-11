@@ -32,7 +32,6 @@
     lua
     typst
     # APPS
-    neovide
     lunacy
     anytype
     firefox
