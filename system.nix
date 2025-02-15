@@ -7,7 +7,7 @@
 }: let
   hosts = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-only/hosts";
-    sha256 = "zvPPF90hdh0d1D+6wb4WA9hfIupnGjFcvFs3PmEvIgY=";
+    sha256 = "6bLcymsKXrKOPk13hMsIIJezxO8CQXe/C1FLXh6GnCo=";
   };
 in {
   boot = {
