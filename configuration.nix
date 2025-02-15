@@ -75,7 +75,7 @@
 
   # System
   environment.systemPackages = with pkgs; [
-    python313
+    python313Full
     lf
     fzf
     ripgrep
