@@ -101,7 +101,7 @@ in {
     enable = true;
     settings = {
       CPU_SCALING_MIN_FREQ_ON_AC = 2500000;
-      CPU_SCALING_MAX_FREQ_ON_AC = 3100000;
+      CPU_SCALING_MAX_FREQ_ON_AC = 2900000;
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
       DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
     };
