@@ -22,22 +22,4 @@
       ruff
     ];
   };
-  programs.neovide = {
-    enable = true;
-    settings = {
-      frame = "none";
-      maximized = false;
-      no-multigrid = false;
-      srgb = false;
-      tabs = false;
-      theme = "auto";
-      title-hidden = true;
-      vsync = false;
-      wsl = false;
-      font = {
-        normal = [];
-        size = 15.0;
-      };
-    };
-  };
 }
