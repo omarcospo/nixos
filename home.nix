@@ -34,16 +34,33 @@
     # APPS
     lunacy
     anytype
-    firefox
     mission-center
     qbittorrent
     stable.kdePackages.kdenlive
     onlyoffice-desktopeditors
+    google-chrome
     (discord.override {
       withOpenASAR = true;
       withVencord = true;
     })
   ];
+
+  programs.firefox = {
+    enable = true;
+    policies = {
+      DefaultDownloadDirectory = "\${home}/Downloads";
+      DisableFirefoxAccounts = true;
+      DisableFirefoxScreenshots = true;
+      DisableFirefoxStudies = true;
+      DisableForgetButton = true;
+      DisableFormHistory = true;
+      DisableMasterPasswordCreation = true;
+      DisablePasswordReveal = true;
+      DisablePocket = true;
+      DisablePrivateBrowsing = true;
+      DisableTelemetry = true;
+    };
+  };
 
   programs.obs-studio = {
     enable = true;
