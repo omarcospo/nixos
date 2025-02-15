@@ -34,13 +34,13 @@
     # APPS
     lunacy
     anytype
+    gearlever
     mission-center
     qbittorrent
-    stable.kdePackages.kdenlive
+    kdePackages.kdenlive
     onlyoffice-desktopeditors
     google-chrome
     (discord.override {
-      withOpenASAR = true;
       withVencord = true;
     })
   ];
