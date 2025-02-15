@@ -106,4 +106,6 @@ in {
       DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
     };
   };
+
+  services.fstrim.enable = true;
 }
