@@ -11,7 +11,7 @@
   };
 in {
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     loader = {
       systemd-boot.enable = true;
       systemd-boot.consoleMode = "0";
