@@ -40,6 +40,7 @@
     kdePackages.kdenlive
     onlyoffice-desktopeditors
     google-chrome
+    ocenaudio
     (discord.override {
       withVencord = true;
     })
