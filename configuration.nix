@@ -82,6 +82,7 @@
     fd
     bat
     eza
+    dua
     zoxide
     wl-clipboard
     stow
