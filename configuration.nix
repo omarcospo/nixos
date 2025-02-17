@@ -76,6 +76,7 @@
   # System
   environment.systemPackages = with pkgs; [
     python313Full
+    ffmpeg
     lf
     fzf
     ripgrep

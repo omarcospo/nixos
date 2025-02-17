@@ -75,6 +75,7 @@
       disable-extension-version-validation = true;
       enabled-extensions = with pkgs.gnomeExtensions; [
         speedinator.extensionUuid
+        blur-my-shell.extensionUuid
         appindicator.extensionUuid
         clipboard-indicator.extensionUuid
         quick-settings-audio-panel.extensionUuid
