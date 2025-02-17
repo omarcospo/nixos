@@ -73,8 +73,10 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
-  # System
+  # Packages
   environment.systemPackages = with pkgs; [
+    win-virtio
+    # CLI
     python313Full
     ffmpeg
     lf
@@ -87,8 +89,49 @@
     zoxide
     wl-clipboard
     stow
-    win-virtio
+    lua
+    typst
+    # GUI
+    lunacy
+    anytype
+    gearlever
+    mission-center
+    qbittorrent
+    kdePackages.kdenlive
+    onlyoffice-desktopeditors
+    google-chrome
+    ocenaudio
+    megasync
+    (discord.override {
+      withVencord = true;
+    })
   ];
+
+  programs.firefox = {
+    enable = true;
+    policies = {
+      DefaultDownloadDirectory = "\${home}/Downloads";
+      DisableFirefoxAccounts = true;
+      DisableFirefoxScreenshots = true;
+      DisableFirefoxStudies = true;
+      DisableForgetButton = true;
+      DisableFormHistory = true;
+      DisableMasterPasswordCreation = true;
+      DisablePasswordReveal = true;
+      DisablePocket = true;
+      DisablePrivateBrowsing = true;
+      DisableTelemetry = true;
+    };
+  };
+
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      obs-backgroundremoval
+      obs-pipewire-audio-capture
+    ];
+  };
 
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["talib"];
