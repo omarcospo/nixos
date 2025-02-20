@@ -14,6 +14,7 @@
     gnomeExtensions.gsconnect
     gnomeExtensions.steal-my-focus-window
     gnomeExtensions.color-picker
+    gnomeExtensions.caffeine
     gnomeExtensions.rounded-window-corners-reborn
     stable.gnome-extension-manager
     dconf-editor
@@ -86,6 +87,7 @@
         color-picker.extensionUuid
         vitals.extensionUuid
         rounded-window-corners-reborn.extensionUuid
+        caffeine.extensionUuid
       ];
     };
     "org/gnome/desktop/input-sources" = {
