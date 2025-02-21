@@ -16,6 +16,7 @@
     gnomeExtensions.color-picker
     gnomeExtensions.caffeine
     gnomeExtensions.rounded-window-corners-reborn
+    gnomeExtensions.tiling-assistant
     stable.gnome-extension-manager
     dconf-editor
   ];
@@ -88,6 +89,7 @@
         vitals.extensionUuid
         rounded-window-corners-reborn.extensionUuid
         caffeine.extensionUuid
+        tiling-assistant.extensionUuid
       ];
     };
     "org/gnome/desktop/input-sources" = {
