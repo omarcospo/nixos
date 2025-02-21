@@ -98,7 +98,7 @@
     mission-center
     qbittorrent
     kdePackages.kdenlive
-    onlyoffice-desktopeditors
+    libreoffice-fresh
     google-chrome
     ocenaudio
     megasync
