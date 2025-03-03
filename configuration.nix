@@ -93,7 +93,6 @@
     typst
     # GUI
     lunacy
-    anytype
     gearlever
     mission-center
     qbittorrent
