@@ -7,7 +7,7 @@
 }: let
   hosts = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-only/hosts";
-    sha256 = "DJ3jls/qs7vUjzOTgAp+WjJIwZCt/BOpqG6ajzTfwVo=";
+    sha256 = "TBmDDB74kpv5naMsGppWdrhVk4Exkt0ixaUla5WVooU=";
   };
 in {
   boot = {
@@ -53,7 +53,7 @@ in {
   # Network
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-  networking.extraHosts = builtins.readFile hosts;
+  # networking.extraHosts = builtins.readFile hosts;
   networking.firewall = {
     enable = false;
     allowedTCPPortRanges = [
