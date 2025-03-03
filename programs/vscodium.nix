@@ -19,6 +19,7 @@
         "editor.fontFamily" = "'IosevkaTerm Nerd Font'";
         "editor.fontLigatures" = true;
         "editor.fontSize" = 17;
+        "notebook.output.fontFamily" = "'IosevkaTerm Nerd Font'";
         # Window
         "window.title" = "''\${rootName}";
         "window.titleBarStyle" = "custom";
