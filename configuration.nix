@@ -92,6 +92,7 @@
     lua
     typst
     # GUI
+    bottles
     lunacy
     gearlever
     mission-center
