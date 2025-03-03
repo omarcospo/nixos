@@ -162,7 +162,7 @@
       noto-fonts-cjk-sans
       noto-fonts-monochrome-emoji
       noto-fonts-color-emoji
-      ibm-plex
+      open-dyslexic
     ];
     fontconfig = {
       antialias = true;
