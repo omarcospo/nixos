@@ -94,16 +94,18 @@
     zoxide
     wl-clipboard
     stow
+    libreoffice-fresh
     lua
     typst
     # GUI
+    tenacity
+    anytype
     bottles
     lunacy
     gearlever
     mission-center
     qbittorrent
     kdePackages.kdenlive
-    libreoffice-fresh
     google-chrome
     ocenaudio
     megasync
