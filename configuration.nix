@@ -83,7 +83,11 @@
     win-virtio
     # CLI
     python313Full
-    ffmpeg
+    ((pkgs.ffmpeg-full.override {
+        withUnfree = true;
+        withOpengl = true;
+      })
+      .overrideAttrs (_: {doCheck = false;}))
     lf
     fzf
     ripgrep
