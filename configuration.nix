@@ -104,6 +104,9 @@
     libreoffice-fresh
     lua
     typst
+    openconnect
+    networkmanager-openconnect
+    globalprotect-openconnect
     # GUI
     tenacity
     anytype
