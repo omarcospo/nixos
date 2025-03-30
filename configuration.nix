@@ -51,6 +51,9 @@
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
 
+  services.gvfs.enable = true; # Mount android
+  programs.adb.enable = true; # Android ADB
+
   qt = {
     enable = true;
     platformTheme = "qt5ct";
@@ -64,7 +67,7 @@
   users.users.talib = {
     isNormalUser = true;
     description = "talib";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "adbusers"];
   };
 
   # Allow unfree packages
