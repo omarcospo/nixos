@@ -108,6 +108,8 @@
     networkmanager-openconnect
     globalprotect-openconnect
     # GUI
+    wpsoffice
+    onlyoffice-desktopeditors
     tenacity
     anytype
     bottles
