@@ -110,6 +110,7 @@
     # GUI
     wpsoffice
     onlyoffice-desktopeditors
+    luminance
     tenacity
     anytype
     bottles
