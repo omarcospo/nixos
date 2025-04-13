@@ -161,6 +161,8 @@
 
   environment = {
     sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
       LD_LIBRARY_PATH = lib.makeLibraryPath [pkgs.stdenv.cc.cc pkgs.zlib];
       QT_SCALE_FACTOR = "1";
       QT_QPA_PLATFORM = "wayland";
