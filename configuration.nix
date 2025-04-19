@@ -121,7 +121,7 @@
     kdePackages.kdenlive
     google-chrome
     ocenaudio
-    megasync
+    p7zip
     (discord.override {
       withVencord = true;
     })
