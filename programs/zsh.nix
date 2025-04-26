@@ -27,6 +27,9 @@
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       source ${pkgs.zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh
       source ~/.config/zsh/extra
+      nix-fetch() {
+        nix-hash --type sha256 --base32 --flat <(curl -o - "$@") | wl-copy
+      }
     '';
   };
 }
