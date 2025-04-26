@@ -30,8 +30,8 @@
 
   home.file.".local/share/background-image.jpg" = {
     source = pkgs.fetchurl {
-      url = "https://images.pexels.com/photos/14840650/pexels-photo-14840650.jpeg";
-      sha256 = "1xwpww4dghkm4cii56z9xli12ns7asl0mgmfgag8hdrib16nqy1x";
+      url = "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=ashkan-forouzani-7blIFp0kFP4-unsplash.jpg";
+      sha256 = "00dzmi3zchbq0hwmpv7pb0bmvscpqb69d8q6s8b65fics5pkpjbp";
     };
   };
 
