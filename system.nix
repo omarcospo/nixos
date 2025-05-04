@@ -100,9 +100,9 @@ in {
   services.tlp = {
     enable = true;
     settings = {
-      CPU_SCALING_MIN_FREQ_ON_AC = 2500000;
-      CPU_SCALING_MAX_FREQ_ON_AC = 2900000;
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      CPU_SCALING_MIN_FREQ_ON_AC = 1500000;
+      CPU_SCALING_MAX_FREQ_ON_AC = 2400000;
+      CPU_ENERGY_PERF_POLICY_ON_AC = "powersave";
       DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
     };
   };
