@@ -86,7 +86,7 @@
     win-virtio
     # CLI
     python313Full
-    ((pkgs.ffmpeg-full.override {
+    ((pkgs.ffmpeg.override {
         withUnfree = true;
         withOpengl = true;
       })
