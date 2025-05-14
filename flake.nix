@@ -13,10 +13,13 @@
     self,
     nixpkgs-unstable,
     nixpkgs-stable,
+    home-manager,
+    neovim-nightly-overlay,
     ...
   } @ inputs: let
+    system = "x86_64-linux";
     overlays = [
-      inputs.neovim-nightly-overlay.overlays.default
+      neovim-nightly-overlay.overlays.default
       (final: prev: {
         stable = import nixpkgs-stable {
           system = prev.system;
@@ -26,18 +29,24 @@
     ];
   in {
     nixosConfigurations.nixos = nixpkgs-unstable.lib.nixosSystem {
+      inherit system;
       specialArgs = {inherit inputs;};
-      modules = [./configuration.nix];
-    };
-    homeConfigurations.talib = inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs-unstable.legacyPackages."x86_64-linux";
-      extraSpecialArgs = {inherit inputs;};
       modules = [
+        ./configuration.nix
         {
           nixpkgs.overlays = overlays;
+          nixpkgs.config.allowUnfree = true;
         }
-        ./home.nix
       ];
+    };
+
+    homeConfigurations.talib = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs-unstable {
+        inherit system overlays;
+        config.allowUnfree = true;
+      };
+      extraSpecialArgs = {inherit inputs;};
+      modules = [./home.nix];
     };
   };
 }

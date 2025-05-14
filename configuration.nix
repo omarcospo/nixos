@@ -85,6 +85,11 @@
   environment.systemPackages = with pkgs; [
     win-virtio
     # CLI
+    gcc
+    binutils
+    gnumake
+    ninja
+    uv
     python313Full
     ((pkgs.ffmpeg.override {
         withUnfree = true;
@@ -160,6 +165,9 @@
   users.extraGroups.vboxusers.members = ["talib"];
 
   environment = {
+    shellInit = ''
+      export PATH="${pkgs.gcc}/bin:$PATH"
+    '';
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
