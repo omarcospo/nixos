@@ -15,9 +15,11 @@
     gnomeExtensions.steal-my-focus-window
     gnomeExtensions.color-picker
     gnomeExtensions.caffeine
+    gnomeExtensions.forge
     gnomeExtensions.rounded-window-corners-reborn
+    gnomeExtensions.bluetooth-battery-meter
     gnomeExtensions.tiling-assistant
-    stable.gnome-extension-manager
+    gnome-extension-manager
     dconf-editor
   ];
 
@@ -90,6 +92,8 @@
         rounded-window-corners-reborn.extensionUuid
         caffeine.extensionUuid
         tiling-assistant.extensionUuid
+        forge.extensionUuid
+        bluetooth-battery-meter.extensionUuid
       ];
     };
     "org/gnome/desktop/input-sources" = {
