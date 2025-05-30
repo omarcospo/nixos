@@ -70,9 +70,6 @@
     extraGroups = ["networkmanager" "wheel" "adbusers"];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
   system.stateVersion = "25.05";

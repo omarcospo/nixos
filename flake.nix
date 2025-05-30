@@ -1,7 +1,7 @@
 {
   inputs = {
-    nixpkgs-unstable.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
-    nixpkgs-stable.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-24.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -18,11 +18,15 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+    };
     overlays = [
       neovim-nightly-overlay.overlays.default
       (final: prev: {
         stable = import nixpkgs-stable {
-          system = prev.system;
+          inherit system;
           config.allowUnfree = true;
         };
       })
@@ -34,17 +38,14 @@
       modules = [
         ./configuration.nix
         {
+          nixpkgs.pkgs = pkgs-unstable;
           nixpkgs.overlays = overlays;
-          nixpkgs.config.allowUnfree = true;
         }
       ];
     };
 
     homeConfigurations.talib = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs-unstable {
-        inherit system overlays;
-        config.allowUnfree = true;
-      };
+      pkgs = pkgs-unstable;
       extraSpecialArgs = {inherit inputs;};
       modules = [./home.nix];
     };
