@@ -110,6 +110,7 @@
     networkmanager-openconnect
     globalprotect-openconnect
     # GUI
+    bleachbit
     wpsoffice
     onlyoffice-desktopeditors
     luminance
