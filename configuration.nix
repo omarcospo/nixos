@@ -110,6 +110,8 @@
     networkmanager-openconnect
     globalprotect-openconnect
     # GUI
+    librewolf-bin
+    protonvpn-gui
     bleachbit
     wpsoffice
     onlyoffice-desktopeditors
