@@ -113,7 +113,6 @@
     librewolf-bin
     protonvpn-gui
     bleachbit
-    wpsoffice
     onlyoffice-desktopeditors
     luminance
     tenacity
