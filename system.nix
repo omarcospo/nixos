@@ -6,8 +6,8 @@
   ...
 }: let
   hosts = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-only/hosts";
-    sha256 = "Y2Wosjz9qNpxJ4DEYe8DAwmdGft1pZa5Hc9gzomVvpk=";
+    url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts";
+    sha256 = "iyuL8L5adVvDpnDD9g9PSq0VSMG286ZYIGubBIAoKnQ=";
   };
 in {
   boot = {
@@ -53,7 +53,6 @@ in {
   # Network
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-  networking.extraHosts = builtins.readFile hosts;
   networking.firewall = {
     enable = false;
     allowedTCPPortRanges = [
