@@ -40,6 +40,7 @@
     simple-scan
     gnome-shell-extensions
     gnome-system-monitor
+    evince
   ];
 
   programs.kdeconnect = {
@@ -127,6 +128,7 @@
     ocenaudio
     p7zip
     droidcam
+    papers
     (discord.override {
       withVencord = true;
     })
