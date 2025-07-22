@@ -39,8 +39,9 @@
 
       # Subtitles
       sub-font = "B612";
-      sub-font-size = "40";
-      sub-border-size = "2";
+      sub-font-size = "45";
+      sub-border-size = "1";
+      sub-color = "#FFFFFFFF";
     };
     scripts = with pkgs.mpvScripts; [
       uosc
