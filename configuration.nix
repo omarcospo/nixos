@@ -117,6 +117,7 @@
     onlyoffice-desktopeditors
     luminance
     tenacity
+    stable.ocenaudio
     anytype
     bottles
     lunacy
@@ -125,7 +126,6 @@
     qbittorrent
     kdePackages.kdenlive
     google-chrome
-    ocenaudio
     p7zip
     droidcam
     papers
