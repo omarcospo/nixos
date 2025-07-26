@@ -5,9 +5,11 @@
   modulesPath,
   ...
 }: let
-  hosts = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts";
-    sha256 = "iyuL8L5adVvDpnDD9g9PSq0VSMG286ZYIGubBIAoKnQ=";
+  hostsFile = pkgs.fetchFromGitHub {
+    owner = "StevenBlack";
+    repo = "hosts";
+    rev = "36d7958e582132b6edee229be1a42c89869400de";
+    sha256 = "nNfRcWqETuuAwKqjAxP8+b7L+CHWEkjLZHHIY3cOcrk=";
   };
 in {
   boot = {
@@ -51,6 +53,16 @@ in {
   environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
 
   # Network
+  networking.extraHosts = ''
+    ${builtins.readFile "${hostsFile}/alternates/fakenews-gambling-porn-social/hosts"}
+    0.0.0.0 youtube.com
+    0.0.0.0 www.youtube.com
+    0.0.0.0 m.youtube.com
+    0.0.0.0 youtubei.googleapis.com
+    0.0.0.0 youtube-nocookie.com
+    0.0.0.0 ytimg.com
+    0.0.0.0 ytstatic.l.google.com
+  '';
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   networking.firewall = {
