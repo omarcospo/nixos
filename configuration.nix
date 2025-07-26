@@ -129,6 +129,7 @@
     p7zip
     droidcam
     papers
+    blanket
     (discord.override {
       withVencord = true;
     })
