@@ -19,6 +19,7 @@
     gnomeExtensions.rounded-window-corners-reborn
     gnomeExtensions.bluetooth-battery-meter
     gnomeExtensions.tiling-assistant
+    gnomeExtensions.cronomix
     gnome-extension-manager
     dconf-editor
   ];
@@ -94,6 +95,7 @@
         tiling-assistant.extensionUuid
         forge.extensionUuid
         bluetooth-battery-meter.extensionUuid
+        cronomix.extensionUuid
       ];
     };
     "org/gnome/desktop/input-sources" = {
