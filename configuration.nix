@@ -104,35 +104,35 @@
     zoxide
     wl-clipboard
     stow
-    libreoffice-fresh
     lua
     typst
     openconnect
     networkmanager-openconnect
     globalprotect-openconnect
-    # GUI
+    # NETWORK
     librewolf-bin
+    ungoogled-chromium
     protonvpn-gui
-    bleachbit
-    onlyoffice-desktopeditors
-    luminance
-    tenacity
-    stable.ocenaudio
-    anytype
-    bottles
-    lunacy
-    gearlever
-    mission-center
     qbittorrent
-    kdePackages.kdenlive
-    google-chrome
-    p7zip
-    droidcam
-    papers
-    blanket
     (discord.override {
       withVencord = true;
     })
+    # PRODUCTIVITY
+    onlyoffice-desktopeditors
+    tenacity
+    stable.ocenaudio
+    anytype
+    lunacy
+    papers
+    blanket
+    kdePackages.kdenlive
+    # SYSTEM
+    bleachbit
+    bottles
+    gearlever
+    mission-center
+    droidcam
+    p7zip
   ];
 
   programs.firefox = {
