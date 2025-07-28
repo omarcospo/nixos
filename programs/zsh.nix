@@ -6,7 +6,7 @@
 }: {
   programs.zsh = {
     enable = true;
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     enableCompletion = false;
     shellAliases = {
       uh = "home-manager switch --flake ~/.nixos --show-trace -L -v";
