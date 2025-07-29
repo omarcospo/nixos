@@ -145,6 +145,9 @@
       DisablePocket = true;
       DisablePrivateBrowsing = true;
       DisableTelemetry = true;
+      DontCheckDefaultBrowser = true;
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
     };
   };
 
