@@ -10,10 +10,6 @@
     ./system.nix
   ];
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.excludePackages = [pkgs.xterm];
-
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
