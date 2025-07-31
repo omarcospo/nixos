@@ -55,13 +55,6 @@ in {
   # Network
   networking.extraHosts = ''
     ${builtins.readFile "${hostsFile}/alternates/fakenews-gambling-porn-social/hosts"}
-    0.0.0.0 youtube.com
-    0.0.0.0 www.youtube.com
-    0.0.0.0 m.youtube.com
-    0.0.0.0 youtubei.googleapis.com
-    0.0.0.0 youtube-nocookie.com
-    0.0.0.0 ytimg.com
-    0.0.0.0 ytstatic.l.google.com
   '';
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
