@@ -102,6 +102,7 @@
     stow
     lua
     typst
+    pdftk
     openconnect
     networkmanager-openconnect
     globalprotect-openconnect
