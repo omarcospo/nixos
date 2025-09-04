@@ -21,6 +21,9 @@
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
+      config.permittedInsecurePackages = [
+        "qtwebengine-5.15.19"
+      ];
     };
     overlays = [
       neovim-nightly-overlay.overlays.default
