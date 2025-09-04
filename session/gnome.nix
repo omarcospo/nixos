@@ -4,25 +4,26 @@
   pkgs,
   modulesPath,
   ...
-}: {
-  home.packages = with pkgs; [
-    gnomeExtensions.speedinator
-    gnomeExtensions.appindicator
-    gnomeExtensions.clipboard-indicator
-    gnomeExtensions.quick-settings-audio-panel
-    gnomeExtensions.alphabetical-app-grid
-    gnomeExtensions.gsconnect
-    gnomeExtensions.steal-my-focus-window
-    gnomeExtensions.color-picker
-    gnomeExtensions.caffeine
-    gnomeExtensions.forge
-    gnomeExtensions.rounded-window-corners-reborn
-    gnomeExtensions.bluetooth-battery-meter
-    gnomeExtensions.tiling-assistant
-    gnomeExtensions.cronomix
-    gnome-extension-manager
-    dconf-editor
+}: let
+  gnomeExts = with pkgs.gnomeExtensions; [
+    speedinator
+    appindicator
+    clipboard-indicator
+    quick-settings-audio-panel
+    alphabetical-app-grid
+    gsconnect
+    steal-my-focus-window
+    color-picker
+    caffeine
+    forge
+    rounded-window-corners-reborn
+    bluetooth-battery-meter
+    tiling-assistant
+    cronomix
+    soft-brightness-plus
   ];
+in {
+  home.packages = with pkgs; [gnome-extension-manager dconf-editor];
 
   home.file.".config/Kvantum/KvLibadwaita".source = "${pkgs.fetchFromGitHub {
     owner = "GabePoel";
@@ -78,25 +79,7 @@
     "org/gnome/shell" = {
       disable-user-extensions = false;
       disable-extension-version-validation = true;
-      enabled-extensions = with pkgs.gnomeExtensions; [
-        speedinator.extensionUuid
-        blur-my-shell.extensionUuid
-        appindicator.extensionUuid
-        clipboard-indicator.extensionUuid
-        quick-settings-audio-panel.extensionUuid
-        alphabetical-app-grid.extensionUuid
-        forge.extensionUuid
-        gsconnect.extensionUuid
-        steal-my-focus-window.extensionUuid
-        color-picker.extensionUuid
-        vitals.extensionUuid
-        rounded-window-corners-reborn.extensionUuid
-        caffeine.extensionUuid
-        tiling-assistant.extensionUuid
-        forge.extensionUuid
-        bluetooth-battery-meter.extensionUuid
-        cronomix.extensionUuid
-      ];
+      enabled-extensions = map (ext: ext.extensionUuid) gnomeExts;
     };
     "org/gnome/desktop/input-sources" = {
       xkb-options = ["ctrl:nocaps" "ctrl:rctrl" "altwin:swap_lalt_lwin"];
