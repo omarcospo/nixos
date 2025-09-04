@@ -20,7 +20,7 @@
       gpu-context = "wayland";
 
       # Audio
-      af = "lavfi=[dynaudnorm=f=75:g=25:p=0.55]";
+      af = "lavfi=[acompressor=threshold=0.089:ratio=9:attack=200:release=1000, dynaudnorm=f=200:g=10]";
 
       # Window
       fs = "yes";
