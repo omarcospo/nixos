@@ -128,7 +128,6 @@
     bottles
     gearlever
     mission-center
-    droidcam
     p7zip
   ];
 
@@ -156,7 +155,6 @@
     enable = true;
     enableVirtualCamera = true;
     plugins = with pkgs.obs-studio-plugins; [
-      droidcam-obs
       wlrobs
       obs-backgroundremoval
       obs-pipewire-audio-capture
