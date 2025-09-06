@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  lib,
   ...
 }: {
   programs.zsh = {
@@ -18,7 +19,7 @@
       config = "git --git-dir=$HOME/.cfg/ --work-tree=$HOME";
       npmi = "cd ~/.local && npm install";
     };
-    initExtraFirst = ''
+    initContent = ''
       setopt PROMPT_SUBST
       PROMPT='%F{yellow}[%n]%f %~ '
     '';
