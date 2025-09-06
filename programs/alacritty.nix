@@ -12,6 +12,10 @@
         };
       };
 
+      selection = {
+        save_to_clipboard = true;
+      };
+
       mouse = {
         hide_when_typing = false;
         bindings = [
@@ -19,6 +23,10 @@
             mouse = "Right";
             mods = "Control";
             action = "Paste";
+          }
+          {
+            mouse = "Right";
+            action = "Copy";
           }
         ];
       };
