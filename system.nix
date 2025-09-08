@@ -54,8 +54,9 @@ in {
 
   # Network
   networking.extraHosts = ''
-    ${builtins.readFile "${hostsFile}/alternates/fakenews-gambling-porn-social/hosts"}
+    ${builtins.readFile "${hostsFile}/alternates/fakenews-gambling-porn/hosts"}
   '';
+
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   networking.firewall = {
