@@ -20,7 +20,9 @@
     bluetooth-battery-meter
     tiling-assistant
     cronomix
+    impatience
     soft-brightness-plus
+    gnome-bedtime
   ];
 in {
   home.packages = with pkgs; [gnome-extension-manager dconf-editor];
