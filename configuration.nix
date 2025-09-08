@@ -44,10 +44,6 @@
     package = pkgs.gnomeExtensions.gsconnect;
   };
 
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
-  programs.gamemode.enable = true;
-
   services.gvfs.enable = true; # Mount android
   programs.adb.enable = true; # Android ADB
 
