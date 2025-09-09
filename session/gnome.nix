@@ -23,6 +23,8 @@
     impatience
     soft-brightness-plus
     gnome-bedtime
+    no-time-for-caution
+    tophat
   ];
 in {
   home.packages = with pkgs; [gnome-extension-manager dconf-editor];
