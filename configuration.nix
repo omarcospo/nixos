@@ -106,7 +106,9 @@
       withVencord = true;
     })
     # PRODUCTIVITY
+    calibre
     onlyoffice-desktopeditors
+    wpsoffice
     tenacity
     stable.ocenaudio
     anytype
