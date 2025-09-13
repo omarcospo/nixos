@@ -81,6 +81,11 @@
     ninja
     uv
     python314
+    ((pkgs.stable.ffmpeg.override {
+        withUnfree = true;
+        withOpengl = true;
+      })
+      .overrideAttrs (_: {doCheck = false;}))
     lf
     fzf
     ripgrep
