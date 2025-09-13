@@ -103,8 +103,6 @@
     networkmanager-openconnect
     # globalprotect-openconnect
     # NETWORK
-    librewolf-bin
-    ungoogled-chromium
     protonvpn-gui
     qbittorrent
     (discord.override {
