@@ -80,7 +80,7 @@
     gnumake
     ninja
     uv
-    python313Full
+    python314
     lf
     fzf
     ripgrep
