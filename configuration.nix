@@ -96,7 +96,7 @@
     pdftk
     openconnect
     networkmanager-openconnect
-    globalprotect-openconnect
+    # globalprotect-openconnect
     # NETWORK
     librewolf-bin
     ungoogled-chromium
