@@ -53,9 +53,7 @@ in {
   environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
 
   # Network
-  networking.extraHosts = ''
-    ${builtins.readFile "${hostsFile}/alternates/fakenews-gambling-porn/hosts"}
-  '';
+  networking.extraHosts = ''${builtins.readFile "${hostsFile}/alternates/fakenews-gambling-porn/hosts"} '';
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
