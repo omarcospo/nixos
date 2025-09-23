@@ -109,6 +109,8 @@
     (discord.override {
       withVencord = true;
     })
+    # WALLET
+    monero-gui
     # PRODUCTIVITY
     calibre
     onlyoffice-desktopeditors
