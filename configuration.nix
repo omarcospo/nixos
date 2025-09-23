@@ -82,6 +82,7 @@
     uv
     python313
     stable.calibre
+    foliate
     ((pkgs.stable.ffmpeg.override {
         withUnfree = true;
         withOpengl = true;
@@ -113,6 +114,7 @@
     monero-gui
     # PRODUCTIVITY
     calibre
+    logseq
     onlyoffice-desktopeditors
     wpsoffice
     tenacity
