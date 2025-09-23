@@ -80,7 +80,7 @@
     gnumake
     ninja
     uv
-    python314
+    python313
     ((pkgs.stable.ffmpeg.override {
         withUnfree = true;
         withOpengl = true;
