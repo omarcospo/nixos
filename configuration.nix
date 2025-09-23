@@ -81,6 +81,7 @@
     ninja
     uv
     python313
+    stable.calibre
     ((pkgs.stable.ffmpeg.override {
         withUnfree = true;
         withOpengl = true;
