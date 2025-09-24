@@ -11,6 +11,10 @@
     rev = "36d7958e582132b6edee229be1a42c89869400de";
     sha256 = "nNfRcWqETuuAwKqjAxP8+b7L+CHWEkjLZHHIY3cOcrk=";
   };
+  youtubeHosts = builtins.fetchurl {
+    url = "https://gist.githubusercontent.com/omarcospo/216a26f5f8c97549f8b32d50238f77fc/raw/aa0a0782426582dfe312da7f3486c3dae680d9da/BlockYouTubeHostsFile";
+    sha256 = "0p1fcqpzrgibas1p7xb20q5d4hmqcwdf9vizkg7ldvwb9lyz6mkw";
+  };
 in {
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
@@ -53,7 +57,10 @@ in {
   environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
 
   # Network
-  networking.extraHosts = ''${builtins.readFile "${hostsFile}/alternates/fakenews-gambling-porn-social/hosts"} '';
+  networking.extraHosts = ''
+    ${builtins.readFile "${hostsFile}/alternates/fakenews-gambling-porn-social/hosts"}
+    ${builtins.readFile youtubeHosts}
+  '';
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
