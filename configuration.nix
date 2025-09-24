@@ -107,9 +107,6 @@
     # NETWORK
     protonvpn-gui
     qbittorrent
-    (discord.override {
-      withVencord = true;
-    })
     # WALLET
     monero-gui
     # PRODUCTIVITY
