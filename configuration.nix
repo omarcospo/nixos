@@ -196,6 +196,7 @@
       open-dyslexic
     ];
     fontconfig = {
+      enable = true;
       antialias = true;
       hinting = {
         enable = true;
