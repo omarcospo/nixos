@@ -38,8 +38,8 @@ in {
 
   home.file.".local/share/background-image.jpg" = {
     source = pkgs.fetchurl {
-      url = "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=ashkan-forouzani-7blIFp0kFP4-unsplash.jpg";
-      sha256 = "00dzmi3zchbq0hwmpv7pb0bmvscpqb69d8q6s8b65fics5pkpjbp";
+      url = "https://images.unsplash.com/photo-1650301545472-b3113cb014e4?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jan-folwarczny-kz63JaDm9V4-unsplash.jpg";
+      sha256 = "PFQdmwb44NmW3osDqZVlWJLKazOcsKxrhH4ONmIbqi4=";
     };
   };
 
