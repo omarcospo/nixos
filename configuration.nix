@@ -114,7 +114,7 @@
     logseq
     onlyoffice-desktopeditors
     wpsoffice
-    stable.ocenaudio
+    ocenaudio
     anytype
     lunacy
     papers
