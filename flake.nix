@@ -7,6 +7,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    niri-gh.url = "github:sodiboo/niri-flake";
   };
 
   outputs = {
@@ -15,6 +16,7 @@
     nixpkgs-stable,
     home-manager,
     neovim-nightly-overlay,
+    niri-gh,
     ...
   } @ inputs: let
     system = "x86_64-linux";
