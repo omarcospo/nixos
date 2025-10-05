@@ -110,12 +110,12 @@
     # WALLET
     monero-gui
     # PRODUCTIVITY
+    syncthing
     calibre
     logseq
     onlyoffice-desktopeditors
     wpsoffice
     ocenaudio
-    anytype
     lunacy
     papers
     blanket
