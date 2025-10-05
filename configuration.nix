@@ -81,7 +81,6 @@
     ninja
     uv
     python313
-    stable.calibre
     foliate
     ((pkgs.stable.ffmpeg.override {
         withOpengl = true;
