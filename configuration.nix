@@ -101,10 +101,12 @@
     pdftk
     openconnect
     networkmanager-openconnect
+    pavucontrol
     # globalprotect-openconnect
     # NETWORK
     protonvpn-gui
     qbittorrent
+    blueman
     # WALLET
     monero-gui
     # PRODUCTIVITY
