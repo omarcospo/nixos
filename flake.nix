@@ -52,7 +52,11 @@
     homeConfigurations.talib = home-manager.lib.homeManagerConfiguration {
       pkgs = pkgs-unstable;
       extraSpecialArgs = {inherit inputs;};
-      modules = [./home.nix];
+      modules = [
+        ./home.nix
+        {
+          nixpkgs.config.allowUnfree = true; # This line was added for Home Manager
+        }
     };
   };
 }

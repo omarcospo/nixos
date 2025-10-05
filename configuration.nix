@@ -84,7 +84,6 @@
     stable.calibre
     foliate
     ((pkgs.stable.ffmpeg.override {
-        withUnfree = true;
         withOpengl = true;
       })
       .overrideAttrs (_: {doCheck = false;}))
@@ -175,7 +174,6 @@
       QT_SCALE_FACTOR = "1";
       QT_QPA_PLATFORM = "wayland";
       NIXOS_OZONE_WL = "1";
-      NIXPKGS_ALLOW_UNFREE = "1";
     };
   };
 
