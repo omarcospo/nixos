@@ -100,4 +100,22 @@
       "Alt+Print".action.screenshot-window = {};
     };
   };
+
+  # ---- Fuzzel
+  programs.fuzzel = {
+    enable = true;
+    settings = {
+      main = {
+        dpi-aware = "yes";
+        terminal = "alacritty -e";
+        font = "Iosevka Nerd Font:size=16";
+        layer = "overlay";
+      };
+      colors.background = "282a36fa";
+      colors.selection = "3d4474fa";
+      colors.selection-text = "fffffffa";
+      colors.border = "fffffffa";
+    };
+  };
+
 }
