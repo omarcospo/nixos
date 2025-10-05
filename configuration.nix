@@ -111,10 +111,10 @@
     monero-gui
     # PRODUCTIVITY
     syncthing
+    ungoogled-chromium
     calibre
     logseq
     onlyoffice-desktopeditors
-    wpsoffice
     ocenaudio
     lunacy
     papers
