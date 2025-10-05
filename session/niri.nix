@@ -118,4 +118,51 @@
     };
   };
 
+  # ---- Mako
+  services.mako = {
+    enable = true;
+    settings = {
+      # Global settings
+      background-color = "#1e1e1e";
+      border-color = "#333333";
+      border-size = 1;
+      text-color = "#ffffff";
+      font = "Noto Sans Nerd Font 11";
+
+      # Position and appearance
+      anchor = "top-center";
+      layer = "top";
+      width = 350;
+      height = 100;
+      margin = "10,10,0,10";
+      border-radius = 5;
+      padding = 10;
+
+      # Timeout settings
+      default-timeout = 5000; # 5 seconds in milliseconds
+      ignore-timeout = false;
+
+      # Additional features
+      actions = true;
+      markup = true;
+      icons = true;
+      format = "<b>%s</b>\\n%b";
+
+      # Progress bar (optional)
+      progress-color = "over #4a4a4a";
+
+      # Category-specific settings
+      "category=urgent" = {
+        background-color = "#900000";
+        border-color = "#ff0000";
+        default-timeout = 0; # Persistent for urgent notifications
+      };
+
+      "category=low-priority" = {
+        background-color = "#2d2d2d";
+        border-color = "#555555";
+        default-timeout = 3000; # Shorter timeout for low priority
+      };
+    };
+  };
 }
