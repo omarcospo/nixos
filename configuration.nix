@@ -125,7 +125,26 @@
     gearlever
     mission-center
     p7zip
+    fuzzel
+    swaylock
+    mako
+    swayidle
   ];
+
+  services = {
+    syncthing = {
+      enable = true;
+      group = "wheel";
+      user = "talib";
+      dataDir = "/home/talib/Documents";
+      configDir = "/home/talib/.config/syncthing";
+      settings = {
+        devices = {
+          "phone" = {id = "EGBYA4F-ARUU3RK-S7UIV2F-KZNTWMJ-E7NSTDO-LPSWDGY-WCI2CIX-SSLIWQO ";};
+        };
+      };
+    };
+  };
 
   programs.firefox = {
     enable = true;
@@ -146,6 +165,17 @@
       OfferToSaveLogins = false;
     };
   };
+
+  programs.niri.enable = true;
+  security.polkit.enable = true; # polkit
+  services.gnome.gnome-keyring.enable = true; # secret service
+  security.pam.services.swaylock = {};
+  programs.waybar.enable = true; # top bar
+
+  # Add Niri to desktop manager sessions
+  services.displayManager.sessionPackages = [
+    pkgs.niri
+  ];
 
   programs.obs-studio = {
     enable = true;
@@ -173,6 +203,8 @@
       LD_LIBRARY_PATH = lib.makeLibraryPath [pkgs.stdenv.cc.cc pkgs.zlib];
       QT_SCALE_FACTOR = "1";
       QT_QPA_PLATFORM = "wayland";
+      GDK_BACKEND = "wayland";
+      SDL_VIDEODRIVER = "wayland";
       NIXOS_OZONE_WL = "1";
     };
   };

@@ -18,6 +18,7 @@
     ./programs/mpv.nix
     ./programs/yt-dlp.nix
     ./session/gnome.nix
+    ./session/niri.nix
   ];
 
   programs.home-manager.enable = true;

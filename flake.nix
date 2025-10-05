@@ -7,7 +7,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    niri-gh.url = "github:sodiboo/niri-flake";
+    niri-flake.url = "github:sodiboo/niri-flake";
   };
 
   outputs = {
@@ -16,7 +16,7 @@
     nixpkgs-stable,
     home-manager,
     neovim-nightly-overlay,
-    niri-gh,
+    niri-flake,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -28,7 +28,7 @@
       ];
     };
     overlays = [
-      neovim-nightly-overlay.overlays.default
+      inputs.niri-flake.overlays.niri
       (final: prev: {
         stable = import nixpkgs-stable {
           inherit system;
@@ -43,9 +43,10 @@
       modules = [
         ./configuration.nix
         {
-          nixpkgs.pkgs = pkgs-unstable;
           nixpkgs.overlays = overlays;
+          nixpkgs.config.allowUnfree = true; # This line was added
         }
+        niri-flake.nixosModules.niri
       ];
     };
 
@@ -57,6 +58,8 @@
         {
           nixpkgs.config.allowUnfree = true; # This line was added for Home Manager
         }
+        niri-flake.homeModules.niri
+      ];
     };
   };
 }
