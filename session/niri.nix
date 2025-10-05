@@ -34,8 +34,8 @@
       keyboard = {
         xkb.options = "ctrl:swapcaps,altwin:swap_alt_win";
         xkb.layout = "br";
-        repeat-delay = 200; # ms before repeat starts
-        repeat-rate = 45; # repeats per second
+        repeat-delay = 200;
+        repeat-rate = 45;
         numlock = true;
       };
     };
