@@ -215,10 +215,6 @@
     packages = with pkgs; [
       nerd-fonts.iosevka
       nerd-fonts.noto
-      barlow
-      lora
-      b612
-      poppins
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-monochrome-emoji
