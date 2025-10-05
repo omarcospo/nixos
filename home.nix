@@ -17,6 +17,7 @@
     ./programs/git.nix
     ./programs/mpv.nix
     ./programs/yt-dlp.nix
+    ./programs/qute.nix
     ./session/gnome.nix
     ./session/niri.nix
   ];
