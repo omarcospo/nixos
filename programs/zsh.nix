@@ -22,8 +22,6 @@
     initContent = ''
       setopt PROMPT_SUBST
       PROMPT='%F{yellow}[%n]%f %~ '
-    '';
-    initExtra = ''
       source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       source ${pkgs.zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh
