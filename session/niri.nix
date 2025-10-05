@@ -5,8 +5,11 @@
   pkgs,
   ...
 }: {
+  # ---- Niri
   programs.niri.settings = {
-    cursor.size = 28;
+    cursor = {
+      theme = "Numix-Cursor";
+    };
     prefer-no-csd = true;
     window-rules = [
       {
