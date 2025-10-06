@@ -10,34 +10,7 @@
     ./system.nix
   ];
 
-  # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-  environment.gnome.excludePackages = with pkgs; [
-    gnome-connections
-    gnome-console
-    gnome-photos
-    gnome-tour
-    gnome-text-editor
-    cheese
-    gnome-music
-    epiphany
-    geary
-    gnome-characters
-    totem
-    tali
-    iagno
-    hitori
-    atomix
-    yelp
-    gnome-maps
-    gnome-weather
-    gnome-contacts
-    simple-scan
-    gnome-shell-extensions
-    gnome-system-monitor
-    evince
-  ];
 
   programs.kdeconnect = {
     enable = true;
@@ -101,19 +74,15 @@
     pdftk
     openconnect
     networkmanager-openconnect
-    pavucontrol
-    # globalprotect-openconnect
     # NETWORK
     protonvpn-gui
     qbittorrent
-    blueman
     # WALLET
     monero-gui
     # PRODUCTIVITY
     syncthing
     ungoogled-chromium
     calibre
-    logseq
     onlyoffice-desktopeditors
     ocenaudio
     lunacy
@@ -124,12 +93,8 @@
     bleachbit
     bottles
     gearlever
-    mission-center
     p7zip
     fuzzel
-    swaylock
-    mako
-    swayidle
   ];
 
   services = {
@@ -168,15 +133,9 @@
   };
 
   programs.niri.enable = true;
-  security.polkit.enable = true; # polkit
-  services.gnome.gnome-keyring.enable = true; # secret service
-  security.pam.services.swaylock = {};
-  programs.waybar.enable = true; # top bar
-
-  # Add Niri to desktop manager sessions
-  services.displayManager.sessionPackages = [
-    pkgs.niri
-  ];
+  security.polkit.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  services.displayManager.sessionPackages = [pkgs.niri];
 
   programs.obs-studio = {
     enable = true;
