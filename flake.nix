@@ -8,6 +8,10 @@
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     niri-flake.url = "github:sodiboo/niri-flake";
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = {
@@ -17,6 +21,7 @@
     home-manager,
     neovim-nightly-overlay,
     niri-flake,
+    dankMaterialShell,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -44,7 +49,7 @@
         ./configuration.nix
         {
           nixpkgs.overlays = overlays;
-          nixpkgs.config.allowUnfree = true; # This line was added
+          nixpkgs.config.allowUnfree = true;
         }
         niri-flake.nixosModules.niri
       ];
@@ -55,10 +60,10 @@
       extraSpecialArgs = {inherit inputs;};
       modules = [
         ./home.nix
-        {
-          nixpkgs.config.allowUnfree = true; # This line was added for Home Manager
-        }
+        {nixpkgs.config.allowUnfree = true;}
         niri-flake.homeModules.niri
+        dankMaterialShell.homeModules.dankMaterialShell.default
+        dankMaterialShell.homeModules.dankMaterialShell.niri
       ];
     };
   };

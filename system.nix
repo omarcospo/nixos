@@ -59,8 +59,8 @@ in {
   # Network
   networking.extraHosts =
     ''
-      ${builtins.readFile "${hostsFile}/alternates/porn-only/hosts"}
     ''
+    # ${builtins.readFile "${hostsFile}/alternates/porn-only/hosts"}
     # ${builtins.readFile youtubeHosts}
     ;
 

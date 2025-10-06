@@ -6,7 +6,49 @@
   ...
 }: {
   # ---- Niri
+  home.file.".config/Kvantum/KvLibadwaita".source = "${pkgs.fetchFromGitHub {
+    owner = "GabePoel";
+    repo = "KvLibadwaita";
+    rev = "main";
+    sha256 = "xBl6zmpqTAH5MIT5iNAdW6kdOcB5MY0Dtrb95hdYpwA=";
+  }}/src/KvLibadwaita";
+
+  xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
+    General.theme = "KvLibadwaitaDark";
+  };
+
+  gtk = {
+    enable = true;
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    theme = {
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
+    };
+
+    cursorTheme = {
+      name = "Numix-Cursor";
+      package = pkgs.numix-cursor-theme;
+    };
+  };
+
+  home.file.".local/share/background-image.jpg" = {
+    source = pkgs.fetchurl {
+      url = "https://images.unsplash.com/photo-1641555979695-ece0d18d0ae4?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&dl=vidit-goswami-W9fhd6qyryU-unsplash.jpg&w=2400";
+      sha256 = "6Jpp2PtAs6sgEPxuc40hwQgNuC12fXnFDClAPecRxoI=";
+    };
+  };
+
   programs.niri.settings = {
+    spawn-at-startup = [
+      {sh = "wl-paste --watch cliphist store &";}
+      {argv = ["dms" "run"];}
+      {argv = ["dms" "ipc" "call" "wallpaper" "set" "~/.local/share/background-image.jpg"];}
+    ];
     cursor = {
       theme = "Numix-Cursor";
     };
@@ -27,7 +69,8 @@
       background-color = "#222222";
       focus-ring.enable = false;
       border.enable = true;
-      border.width = 1;
+      border.active.color = "#1FC7FF";
+      border.width = 2;
       shadow.enable = false;
     };
     input = {
@@ -64,7 +107,6 @@
       "Mod+Shift+F".action.fullscreen-window = {};
       "Mod+Q".action.close-window = {};
       "Mod+C".action.center-column = {};
-      "Mod+E".action.spawn = "fuzzel";
       "Mod+T".action.spawn = "alacritty";
       "Mod+A".action.focus-column-left = {};
       "Mod+J".action.focus-window-down = {};
@@ -82,21 +124,43 @@
       "Mod+Equal".action.set-column-width = "+10%";
       "Mod+WheelScrollRight".action.focus-column-right = {};
       "Mod+WheelScrollLeft".action.focus-column-left = {};
+      # --------------------------------
+      # Mod+N hotkey-overlay-title="Notification Center" {
+      #    spawn "dms" "ipc" "call" "notifications" "toggle";
+      # }
+      # Mod+P hotkey-overlay-title="Notepad" {
+      #    spawn "dms" "ipc" "call" "notepad" "toggle";
+      # }
+      # --------------------------------
+      "Mod+E".action.spawn = ["fuzzel"];
+      "Mod+V" = {action.spawn = ["dms" "ipc" "call" "clipboard" "toggle"];};
+      "Mod+L" = {action.spawn = ["dms" "ipc" "call" "lock" "lock"];};
+      "Mod+P" = {action.spawn = ["dms" "ipc" "call" "control-center" "toggle"];};
+      "Mod+O" = {action.spawn = ["dms" "ipc" "call" "settings" "toggle"];};
+      # --------------------------------
+      "XF86MonBrightnessUp" = {
+        allow-when-locked = true;
+        action.spawn = ["dms" "ipc" "call" "brightness" "increment" "5"];
+      };
+      "XF86MonBrightnessDown" = {
+        allow-when-locked = true;
+        action.spawn = ["dms" "ipc" "call" "brightness" "decrement" "5"];
+      };
       "XF86AudioRaiseVolume" = {
         allow-when-locked = true;
-        action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"];
+        action.spawn = ["dms" "ipc" "call" "audio" "increment" "3"];
       };
       "XF86AudioLowerVolume" = {
         allow-when-locked = true;
-        action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"];
+        action.spawn = ["dms" "ipc" "call" "audio" "decrement" "3"];
       };
       "XF86AudioMute" = {
         allow-when-locked = true;
-        action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
+        action.spawn = ["dms" "ipc" "call" "audio" "mute"];
       };
       "XF86AudioMicMute" = {
         allow-when-locked = true;
-        action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
+        action.spawn = ["dms" "ipc" "call" "audio" "micmute"];
       };
       "Print".action.screenshot = {};
       "Ctrl+Print".action.screenshot-screen = {};
@@ -121,8 +185,8 @@
     };
   };
 
-  # ---- Mako
   services.mako = {
+    # ---- Mako
     enable = true;
     settings = {
       # Global settings
@@ -168,4 +232,7 @@
       };
     };
   };
+
+  # ---- Shell
+  programs.dankMaterialShell.enable = true;
 }
