@@ -125,13 +125,6 @@
       "Mod+WheelScrollRight".action.focus-column-right = {};
       "Mod+WheelScrollLeft".action.focus-column-left = {};
       # --------------------------------
-      # Mod+N hotkey-overlay-title="Notification Center" {
-      #    spawn "dms" "ipc" "call" "notifications" "toggle";
-      # }
-      # Mod+P hotkey-overlay-title="Notepad" {
-      #    spawn "dms" "ipc" "call" "notepad" "toggle";
-      # }
-      # --------------------------------
       "Mod+E".action.spawn = ["fuzzel"];
       "Mod+V" = {action.spawn = ["dms" "ipc" "call" "clipboard" "toggle"];};
       "Mod+L" = {action.spawn = ["dms" "ipc" "call" "lock" "lock"];};
@@ -148,23 +141,19 @@
       };
       "XF86AudioRaiseVolume" = {
         allow-when-locked = true;
-        action.spawn = ["dms" "ipc" "call" "audio" "increment" "3"];
+        action.spawn = ["wpctl" "set-volume" "@DEFAULT_SINK@" "5%+"];
       };
       "XF86AudioLowerVolume" = {
         allow-when-locked = true;
-        action.spawn = ["dms" "ipc" "call" "audio" "decrement" "3"];
+        action.spawn = ["wpctl" "set-volume" "@DEFAULT_SINK@" "5%-"];
       };
       "XF86AudioMute" = {
         allow-when-locked = true;
-        action.spawn = ["dms" "ipc" "call" "audio" "mute"];
+        action.spawn = ["wpctl" "set-mute" "@DEFAULT_SINK@" "toggle"];
       };
-      "XF86AudioMicMute" = {
-        allow-when-locked = true;
-        action.spawn = ["dms" "ipc" "call" "audio" "micmute"];
-      };
-      "Print".action.screenshot = {};
-      "Ctrl+Print".action.screenshot-screen = {};
-      "Alt+Print".action.screenshot-window = {};
+      "Home".action.screenshot = {};
+      "Ctrl+Home".action.screenshot-screen = {};
+      "Alt+Home".action.screenshot-window = {};
     };
   };
 
