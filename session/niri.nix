@@ -57,10 +57,10 @@
       {
         clip-to-geometry = true;
         geometry-corner-radius = {
-          bottom-left = 12.0;
-          bottom-right = 12.0;
-          top-left = 12.0;
-          top-right = 12.0;
+          bottom-left = 0.0;
+          bottom-right = 0.0;
+          top-left = 0.0;
+          top-right = 0.0;
         };
       }
     ];
