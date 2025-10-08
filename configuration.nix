@@ -46,19 +46,13 @@
 
   # Packages
   environment.systemPackages = with pkgs; [
-    win-virtio
-    # CLI
-    gcc
-    binutils
+    # BUILDING DEPENDENCIES
     gnumake
     ninja
+    gcc
+    binutils
     uv
-    python313
-    foliate
-    ((pkgs.stable.ffmpeg.override {
-        withOpengl = true;
-      })
-      .overrideAttrs (_: {doCheck = false;}))
+    # CLI TOOLS
     lf
     fzf
     ripgrep
@@ -69,26 +63,29 @@
     zoxide
     wl-clipboard
     stow
-    lua
-    typst
+    # NETWORK
+    qbittorrent
+    syncthing
+    # PRODUCTIVITY
+    onlyoffice-desktopeditors
+    kdePackages.kdenlive
+    ocenaudio
+    stable.calibre
+    lunacy
+
+    # CLI
+    win-virtio
+    foliate
+    ((pkgs.stable.ffmpeg.override {withOpengl = true;}) .overrideAttrs (_: {doCheck = false;}))
     pdftk
     openconnect
     networkmanager-openconnect
-    # NETWORK
-    protonvpn-gui
-    qbittorrent
     # WALLET
     monero-gui
     # PRODUCTIVITY
-    syncthing
     ungoogled-chromium
-    calibre
-    onlyoffice-desktopeditors
-    ocenaudio
-    lunacy
     papers
     blanket
-    kdePackages.kdenlive
     # SYSTEM
     bleachbit
     bottles
