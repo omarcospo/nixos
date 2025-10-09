@@ -166,6 +166,8 @@ in {
     zoxide
     wl-clipboard
     stow
+    zathura
+    imv
     # NETWORK
     qbittorrent
     syncthing
