@@ -35,6 +35,11 @@
       "image/svg+xml" = "imv.desktop";
       "image/webp" = "imv.desktop";
       "image/tiff" = "imv.desktop";
+      "text/html" = ["firefox.desktop"];
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
+      "x-scheme-handler/about" = ["firefox.desktop"];
+      "x-scheme-handler/unknown" = ["firefox.desktop"];
     };
   };
 
