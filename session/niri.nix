@@ -44,14 +44,8 @@
   };
 
   programs.niri.settings = {
-    spawn-at-startup = [
-      {sh = "wl-paste --watch cliphist store &";}
-      {argv = ["dms" "run"];}
-      {argv = ["dms" "ipc" "call" "wallpaper" "set" "~/.local/share/background-image.jpg"];}
-    ];
-    cursor = {
-      theme = "Numix-Cursor";
-    };
+    spawn-at-startup = [{sh = "wl-paste --watch cliphist store &";}];
+    cursor = {theme = "Numix-Cursor";};
     prefer-no-csd = true;
     window-rules = [
       {
@@ -107,7 +101,6 @@
       "Mod+Shift+F".action.fullscreen-window = {};
       "Mod+Q".action.close-window = {};
       "Mod+C".action.center-column = {};
-      "Mod+T".action.spawn = "alacritty";
       "Mod+A".action.focus-column-left = {};
       "Mod+J".action.focus-window-down = {};
       "Mod+K".action.focus-window-up = {};
@@ -125,7 +118,10 @@
       "Mod+WheelScrollRight".action.focus-column-right = {};
       "Mod+WheelScrollLeft".action.focus-column-left = {};
       # --------------------------------
-      "Mod+E".action.spawn = ["fuzzel"];
+      "Mod+G".action.toggle-overview = {};
+      "Mod+T".action.spawn = "alacritty";
+      "Mod+E".action.spawn = ["dms" "ipc" "call" "spotlight" "toggle"];
+      "Mod+N".action.spawn = ["dms" "ipc" "call" "notepad" "toggle"];
       "Mod+V" = {action.spawn = ["dms" "ipc" "call" "clipboard" "toggle"];};
       "Mod+L" = {action.spawn = ["dms" "ipc" "call" "lock" "lock"];};
       "Mod+P" = {action.spawn = ["dms" "ipc" "call" "control-center" "toggle"];};
@@ -157,23 +153,7 @@
     };
   };
 
-  # ---- Fuzzel
-  programs.fuzzel = {
-    enable = true;
-    settings = {
-      main = {
-        dpi-aware = "yes";
-        terminal = "alacritty -e";
-        font = "Iosevka Nerd Font:size=16";
-        layer = "overlay";
-      };
-      colors.background = "282a36fa";
-      colors.selection = "3d4474fa";
-      colors.selection-text = "fffffffa";
-      colors.border = "fffffffa";
-    };
-  };
-
   # ---- Shell
   programs.dankMaterialShell.enable = true;
+  programs.dankMaterialShell.enableSystemd = true;
 }

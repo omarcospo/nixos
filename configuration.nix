@@ -159,6 +159,7 @@ in {
     lf
     fzf
     ripgrep
+    sd
     fd
     bat
     eza
@@ -166,8 +167,13 @@ in {
     zoxide
     wl-clipboard
     stow
+    grimblast
+    slurp
+    hyprpicker
+    grim
     zathura
     imv
+    p7zip
     # NETWORK
     qbittorrent
     syncthing
@@ -177,7 +183,6 @@ in {
     ocenaudio
     stable.calibre
     lunacy
-
     # CLI
     win-virtio
     foliate
@@ -189,14 +194,11 @@ in {
     monero-gui
     # PRODUCTIVITY
     ungoogled-chromium
-    papers
     blanket
     # SYSTEM
     bleachbit
     bottles
     gearlever
-    p7zip
-    fuzzel
   ];
 
   services = {
