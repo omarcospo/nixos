@@ -184,6 +184,7 @@ in {
     stable.calibre
     lunacy
     # CLI
+    pavucontrol
     win-virtio
     foliate
     ((pkgs.stable.ffmpeg.override {withOpengl = true;}) .overrideAttrs (_: {doCheck = false;}))
