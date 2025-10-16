@@ -1,7 +1,7 @@
 {
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -28,9 +28,7 @@
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
-      config.permittedInsecurePackages = [
-        "qtwebengine-5.15.19"
-      ];
+      config.permittedInsecurePackages = ["qtwebengine-5.15.19"];
     };
     overlays = [
       inputs.niri-flake.overlays.niri
@@ -54,7 +52,6 @@
         niri-flake.nixosModules.niri
       ];
     };
-
     homeConfigurations.talib = home-manager.lib.homeManagerConfiguration {
       pkgs = pkgs-unstable;
       extraSpecialArgs = {inherit inputs;};
