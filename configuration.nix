@@ -154,7 +154,6 @@ in {
     ninja
     gcc
     binutils
-    uv
     # CLI TOOLS
     lf
     fzf

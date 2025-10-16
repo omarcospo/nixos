@@ -22,7 +22,8 @@
       stylua
       lua-language-server
       # PYTHON
-      python313
+      uv
+      python314
       ruff
       # Markdown
       marksman
