@@ -63,13 +63,14 @@ in {
       }
     ];
     layout = {
-      gaps = 15;
+      gaps = 13;
       background-color = "#222222";
       focus-ring.enable = false;
       border.enable = true;
       border.active.color = "#1FC7FF";
       border.width = 2;
       shadow.enable = false;
+      always-center-single-column = true;
     };
     input = {
       keyboard = {
