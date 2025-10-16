@@ -3,23 +3,25 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  importDir = dir: let
+    files = builtins.readDir dir;
+    nixFiles =
+      builtins.filter (name: builtins.match ".*\\.nix" name != null)
+      (builtins.attrNames files);
+  in
+    map (file: dir + "/${file}") nixFiles;
+in {
   home.username = "talib";
   home.homeDirectory = "/home/talib";
   home.stateVersion = "25.05";
   home.enableNixpkgsReleaseCheck = false;
 
-  imports = [
-    ./programs/alacritty.nix
-    ./programs/neovim.nix
-    ./programs/zsh.nix
-    ./programs/git.nix
-    ./programs/mpv.nix
-    ./programs/yt-dlp.nix
-    ./programs/zathura.nix
-    ./programs/imv.nix
-    ./session/niri.nix
-  ];
+  imports =
+    (importDir ./programs)
+    ++ [
+      ./session/niri.nix
+    ];
 
   xdg.mimeApps = {
     enable = true;
