@@ -154,6 +154,7 @@ in {
     ninja
     gcc
     binutils
+    kdePackages.qqc2-desktop-style
     # CLI TOOLS
     lf
     fzf

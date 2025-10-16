@@ -3,15 +3,19 @@
   config,
   lib,
   pkgs,
+  fileset,
   ...
-}: {
-  # ---- Niri
-  home.file.".config/Kvantum/KvLibadwaita".source = "${pkgs.fetchFromGitHub {
+}: let
+  kvLibadwaita = pkgs.fetchFromGitHub {
     owner = "GabePoel";
     repo = "KvLibadwaita";
     rev = "main";
     sha256 = "xBl6zmpqTAH5MIT5iNAdW6kdOcB5MY0Dtrb95hdYpwA=";
-  }}/src/KvLibadwaita";
+  };
+in {
+  # ---- Niri
+  home.file.".config/Kvantum/KvLibadwaita".source = kvLibadwaita + "/src/KvLibadwaita";
+  home.file.".config/kdeglobals".source = kvLibadwaita + "/src";
 
   xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
     General.theme = "KvLibadwaitaDark";
