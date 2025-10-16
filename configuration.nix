@@ -178,7 +178,7 @@ in {
     qbittorrent
     syncthing
     # PRODUCTIVITY
-    onlyoffice-desktopeditors
+    libreoffice-qt6-fresh
     kdePackages.kdenlive
     ocenaudio
     stable.calibre
