@@ -6,8 +6,6 @@
   programs.yt-dlp = {
     enable = true;
     settings = {
-      all-subs = true;
-      write-annotations = true;
       add-metadata = true;
       embed-subs = true;
       embed-thumbnail = true;
