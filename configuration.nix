@@ -156,12 +156,11 @@ in {
     binutils
     kdePackages.qqc2-desktop-style
     # CLI TOOLS
-    lf
+    yazi
     fzf
     ripgrep
     sd
     fd
-    bat
     eza
     dua
     zoxide
@@ -174,6 +173,7 @@ in {
     zathura
     imv
     p7zip
+    atool
     # NETWORK
     qbittorrent
     syncthing
@@ -209,6 +209,33 @@ in {
       user = "talib";
       dataDir = "/home/talib/Documents";
       configDir = "/home/talib/.config/syncthing";
+    };
+  };
+
+  programs.foot = {
+    enable = true;
+    theme = "catppuccin-mocha";
+    settings = {
+      main = {
+        # gpu-rendering=yes
+        term = "xterm-256color";
+        font = "Iosevka Nerd Font:size=15";
+        font-bold = "Iosevka Nerd Font:size=15:style=bold";
+        font-italic = "Iosevka Nerd Font:size=15:style=italic";
+        font-bold-italic = "Iosevka Nerd Font:size=15:style=bolditalic";
+        bold-text-in-bright = "no";
+        underline-offset = 0;
+        box-drawings-uses-font-glyphs = "no";
+        resize-delay-ms = 5;
+        workers = 4;
+      };
+      scrollback = {
+        lines = 200;
+        multiplier = 3;
+      };
+      tweak = {
+        max-shm-pool-size-mb = 2048;
+      };
     };
   };
 

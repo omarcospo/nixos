@@ -124,7 +124,7 @@ in {
       "Mod+WheelScrollLeft".action.focus-column-left = {};
       # --------------------------------
       "Mod+G".action.toggle-overview = {};
-      "Mod+T".action.spawn = "alacritty";
+      "Mod+T".action.spawn = "foot";
       "Mod+E".action.spawn = ["dms" "ipc" "call" "spotlight" "toggle"];
       "Mod+N".action.spawn = ["dms" "ipc" "call" "notepad" "toggle"];
       "Mod+V" = {action.spawn = ["dms" "ipc" "call" "clipboard" "toggle"];};
