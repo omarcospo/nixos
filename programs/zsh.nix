@@ -15,9 +15,9 @@
       uu = "sudo nix flake update --flake ~/.nixos && sudo nixos-rebuild switch --flake ~/.nixos --show-trace -L -v && home-manager switch --flake ~/.nixos --show-trace -L -v";
       ee = "eza";
       qq = "clear";
+      ff = "yazi";
       eq = "exit";
       config = "git --git-dir=$HOME/.cfg/ --work-tree=$HOME";
-      npmi = "cd ~/.local && npm install";
     };
     initContent = ''
       setopt PROMPT_SUBST
@@ -26,7 +26,7 @@
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       source ${pkgs.zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh
       source ~/.config/zsh/extra
-      nix-fetch() {
+      nix-fetch-sha256() {
         nix-hash --type sha256 --base32 --flat <(curl -o - "$@") | wl-copy
       }
     '';
